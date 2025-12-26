@@ -57,12 +57,65 @@
     --sidebar-accent-foreground: 0 0% 89%;
     --sidebar-border: 0 0% 20%;
     --sidebar-ring: 14 100% 50%;
+
+    /* Theme transition */
+    --theme-transition: 0.5s ease;
+  }
+
+  /* Light theme */
+  [data-theme="light"] {
+    --background: 0 0% 95%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 14 100% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 90%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 14 100% 45%;
+    --accent-foreground: 0 0% 100%;
+    --border: 0 0% 80%;
+    --input: 0 0% 88%;
+    --terminal: 120 70% 30%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 10%;
+  }
+
+  /* Minimal theme - ultra clean */
+  [data-theme="minimal"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 15%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 15%;
+    --primary: 0 0% 15%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 15%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 50%;
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 95%;
+    --grid: 0 0% 15%;
+    --terminal: 0 0% 30%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 15%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    transition: background-color var(--theme-transition), 
+                color var(--theme-transition),
+                border-color var(--theme-transition);
   }
 
   html {
@@ -80,6 +133,17 @@
     text-transform: uppercase;
     letter-spacing: -0.02em;
   }
+}
+
+/* Theme switch flash effect */
+.theme-flash {
+  animation: themeFlash 0.3s ease-out;
+}
+
+@keyframes themeFlash {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; filter: brightness(1.5); }
+  100% { opacity: 1; }
 }
 
 @layer components {

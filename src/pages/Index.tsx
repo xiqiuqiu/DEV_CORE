@@ -1,3 +1,4 @@
+import { useState, useCallback } from 'react';
 import GrainOverlay from '@/components/GrainOverlay';
 import ScanlineOverlay from '@/components/ScanlineOverlay';
 import LeftSidebar from '@/components/LeftSidebar';
@@ -11,8 +12,19 @@ import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 
 const Index = () => {
+  const [isFlashing, setIsFlashing] = useState(false);
+
+  const handleThemeChange = useCallback((theme: string) => {
+    // Add flash effect
+    setIsFlashing(true);
+    setTimeout(() => setIsFlashing(false), 300);
+
+    // Apply theme
+    document.documentElement.setAttribute('data-theme', theme);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-background grid-bg">
+    <div className={`min-h-screen bg-background grid-bg ${isFlashing ? 'theme-flash' : ''}`}>
       {/* Overlays */}
       <GrainOverlay />
       <ScanlineOverlay />
@@ -20,7 +32,7 @@ const Index = () => {
       {/* Fixed layout elements */}
       <LeftSidebar />
       <TopBar />
-      <DataPanel />
+      <DataPanel onThemeChange={handleThemeChange} />
 
       {/* Main content */}
       <main className="ml-16 md:ml-20 lg:mr-72 xl:mr-80 pt-14">
