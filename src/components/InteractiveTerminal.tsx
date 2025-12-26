@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useTerminal, TerminalLog } from '@/hooks/useTerminal';
 
 interface InteractiveTerminalProps {
@@ -9,6 +9,7 @@ const InteractiveTerminal = ({ onThemeChange }: InteractiveTerminalProps) => {
   const { logs, inputValue, setInputValue, handleKeyDown } = useTerminal(onThemeChange);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [cursorPos, setCursorPos] = useState(0);
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -16,6 +17,13 @@ const InteractiveTerminal = ({ onThemeChange }: InteractiveTerminalProps) => {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
   }, [logs]);
+
+  // Sync cursor position
+  const updateCursorPos = () => {
+    if (inputRef.current) {
+      setCursorPos(inputRef.current.selectionStart ?? inputValue.length);
+    }
+  };
 
   // Focus input on click
   const handleContainerClick = () => {
@@ -78,8 +86,18 @@ const InteractiveTerminal = ({ onThemeChange }: InteractiveTerminalProps) => {
               ref={inputRef}
               type="text"
               value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={handleKeyDown}
+              onChange={(e) => {
+                setInputValue(e.target.value);
+                updateCursorPos();
+              }}
+              onKeyDown={(e) => {
+                handleKeyDown(e);
+                // Update cursor after key events
+                setTimeout(updateCursorPos, 0);
+              }}
+              onKeyUp={updateCursorPos}
+              onClick={updateCursorPos}
+              onSelect={updateCursorPos}
               className="w-full bg-transparent outline-none text-foreground caret-transparent"
               autoFocus
               spellCheck={false}
@@ -87,9 +105,9 @@ const InteractiveTerminal = ({ onThemeChange }: InteractiveTerminalProps) => {
             />
             {/* Custom cursor */}
             <span 
-              className="absolute top-0 h-full w-2 bg-terminal animate-blink"
+              className="absolute top-0 h-full w-2 bg-terminal animate-blink pointer-events-none"
               style={{ 
-                left: `${inputValue.length * 0.6}em`,
+                left: `${cursorPos * 0.6}em`,
               }}
             />
           </div>
