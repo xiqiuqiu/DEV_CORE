@@ -1,16 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
-const useDynamicTitle = (defaultTitle: string = 'JIANG_YI // Portfolio') => {
+const useDynamicTitle = (defaultTitle: string = "JIANG_YI // Portfolio") => {
   const originalTitle = useRef(defaultTitle);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const awayMessages = [
-      '⚠ 信号丢失...',
-      '📡 连接断开',
-      '🔌 等待重连...',
-      '👀 回来看看？',
-    ];
+    const awayMessages = ["🔌 等待重连..."];
     let messageIndex = 0;
 
     const handleVisibilityChange = () => {
@@ -34,10 +29,10 @@ const useDynamicTitle = (defaultTitle: string = 'JIANG_YI // Portfolio') => {
       }
     };
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
