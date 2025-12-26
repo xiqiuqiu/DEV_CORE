@@ -14,9 +14,9 @@ interface CommandHandler {
 
 // Portfolio data
 const projects = [
-  { name: "brutalist-ui", tech: "Vue, Tailwind, Framer", status: "LIVE", year: "2024" },
-  { name: "data-viz-platform", tech: "D3.js, Canvas, WebGL", status: "LIVE", year: "2024" },
-  { name: "cli-portfolio", tech: "Vue, TypeScript, GSAP", status: "DEV", year: "2024" },
+  { name: "brutalist-ui", tech: "Vue, Tailwind, Framer", status: "LIVE", year: "2025" },
+  { name: "data-viz-platform", tech: "D3.js, Canvas, WebGL", status: "LIVE", year: "2025" },
+  { name: "cli-portfolio", tech: "Vue, TypeScript, GSAP", status: "DEV", year: "2025" },
   { name: "design-system", tech: "Storybook, CSS-in-JS", status: "LIVE", year: "2023" },
 ];
 

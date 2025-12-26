@@ -2,13 +2,9 @@ const skills = [
   { name: 'TypeScript', level: 95, category: 'LANG' },
   { name: 'React', level: 92, category: 'FE' },
   { name: 'Node.js', level: 88, category: 'BE' },
-  { name: 'PostgreSQL', level: 85, category: 'DB' },
-  { name: 'Go', level: 78, category: 'LANG' },
+  { name: 'MariaDB', level: 85, category: 'DB' },
   { name: 'Docker', level: 82, category: 'DEVOPS' },
-  { name: 'Kubernetes', level: 75, category: 'DEVOPS' },
-  { name: 'GraphQL', level: 88, category: 'API' },
-  { name: 'Redis', level: 80, category: 'DB' },
-  { name: 'AWS', level: 85, category: 'CLOUD' },
+  { name: 'Aliyun', level: 85, category: 'CLOUD' },
 ];
 
 const SkillsSection = () => {
