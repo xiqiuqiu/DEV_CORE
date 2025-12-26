@@ -10,9 +10,11 @@ import SkillsSection from '@/components/SkillsSection';
 import AboutSection from '@/components/AboutSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import { PageTransitionProvider, usePageTransition } from '@/components/PageTransition';
 
-const Index = () => {
+const IndexContent = () => {
   const [isFlashing, setIsFlashing] = useState(false);
+  const { triggerTransition } = usePageTransition();
 
   const handleThemeChange = useCallback((theme: string) => {
     // Add flash effect
@@ -23,6 +25,17 @@ const Index = () => {
     document.documentElement.setAttribute('data-theme', theme);
   }, []);
 
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    triggerTransition(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      window.location.hash = href;
+    });
+  }, [triggerTransition]);
+
   return (
     <div className={`min-h-screen bg-background grid-bg ${isFlashing ? 'theme-flash' : ''}`}>
       {/* Overlays */}
@@ -31,7 +44,7 @@ const Index = () => {
       
       {/* Fixed layout elements */}
       <LeftSidebar />
-      <TopBar />
+      <TopBar onNavClick={handleNavClick} />
       <DataPanel onThemeChange={handleThemeChange} />
 
       {/* Main content */}
@@ -44,6 +57,14 @@ const Index = () => {
         <Footer />
       </main>
     </div>
+  );
+};
+
+const Index = () => {
+  return (
+    <PageTransitionProvider>
+      <IndexContent />
+    </PageTransitionProvider>
   );
 };
 
