@@ -34,18 +34,50 @@ const DataPanel = ({ onThemeChange }: DataPanelProps) => {
 
       {/* Music player */}
       <div className="p-4 border-b border-border">
-        <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-card-foreground">
-          MUSIC PLAYER
+        <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-card-foreground flex items-center gap-2">
+          <span className="inline-block w-2 h-2 bg-primary animate-pulse" />
+          AUDIO STREAM
         </h4>
-        <div className="w-full overflow-hidden">
-          <iframe
-            src="https://dontpanic92.github.io/embedded-netease-music-player/embedded-netease-music-player.html?536622304"
-            width="100%"
-            height="96"
-            frameBorder="0"
-            className="border-0"
-            title="Music Player"
-          />
+        <div className="relative w-full overflow-hidden border border-border bg-background">
+          {/* Decorative top bar */}
+          <div className="flex items-center justify-between px-2 py-1 bg-muted border-b border-border">
+            <div className="flex items-center gap-1">
+              <span className="w-2 h-2 rounded-full bg-primary" />
+              <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+              <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+            </div>
+            <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">LIVE</span>
+          </div>
+          {/* Player iframe */}
+          <div className="relative">
+            <iframe
+              src="https://dontpanic92.github.io/embedded-netease-music-player/embedded-netease-music-player.html?536622304"
+              width="100%"
+              height="96"
+              frameBorder="0"
+              className="border-0 block"
+              title="Music Player"
+            />
+            {/* Subtle scanline overlay */}
+            <div 
+              className="pointer-events-none absolute inset-0 opacity-10"
+              style={{
+                background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, hsl(var(--foreground) / 0.05) 2px, hsl(var(--foreground) / 0.05) 4px)'
+              }}
+            />
+          </div>
+          {/* Decorative bottom bar */}
+          <div className="px-2 py-1 bg-muted border-t border-border">
+            <div className="flex items-center gap-1">
+              {[...Array(12)].map((_, i) => (
+                <span 
+                  key={i} 
+                  className="flex-1 h-1 bg-primary/60"
+                  style={{ opacity: 0.3 + Math.random() * 0.7 }}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
