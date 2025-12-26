@@ -11,10 +11,12 @@ import AboutSection from '@/components/AboutSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import { PageTransitionProvider, usePageTransition } from '@/components/PageTransition';
+import useDynamicTitle from '@/hooks/useDynamicTitle';
 
 const IndexContent = () => {
   const [isFlashing, setIsFlashing] = useState(false);
   const { triggerTransition } = usePageTransition();
+  useDynamicTitle();
 
   const handleThemeChange = useCallback((theme: string) => {
     // Trigger scanline transition, then apply theme at midpoint
