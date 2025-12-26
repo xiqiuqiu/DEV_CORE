@@ -1,6 +1,6 @@
 const skills = [
   { name: 'TypeScript', level: 95, category: 'LANG' },
-  { name: 'React', level: 92, category: 'FE' },
+  { name: 'Vue', level: 92, category: 'FE' },
   { name: 'Node.js', level: 88, category: 'BE' },
   { name: 'MariaDB', level: 85, category: 'DB' },
   { name: 'Docker', level: 82, category: 'DEVOPS' },
