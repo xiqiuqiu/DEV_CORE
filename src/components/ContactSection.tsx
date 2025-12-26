@@ -1,10 +1,10 @@
-import { Mail, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Github, Linkedin, Twitter } from "lucide-react";
 
 const contactLinks = [
-  { icon: Mail, label: 'EMAIL', href: 'mailto:hello@example.com', value: 'hello@example.com' },
-  { icon: Github, label: 'GITHUB', href: 'https://github.com', value: '@devcore' },
-  { icon: Linkedin, label: 'LINKEDIN', href: 'https://linkedin.com', value: 'in/devcore' },
-  { icon: Twitter, label: 'TWITTER', href: 'https://twitter.com', value: '@devcore' },
+  { icon: Mail, label: "EMAIL", href: "mailto:ixiqiuqiu@gmail.com", value: "ixiqiuqiu@gmail.com" },
+  { icon: Github, label: "GITHUB", href: "https://github.com", value: "@xiqiuqiu" },
+  // { icon: Linkedin, label: 'LINKEDIN', href: 'https://linkedin.com', value: 'in/devcore' },
+  { icon: Twitter, label: "TWITTER", href: "https://twitter.com", value: "@logic_zy" },
 ];
 
 const ContactSection = () => {
@@ -15,9 +15,7 @@ const ContactSection = () => {
         <div className="flex items-center gap-4 mb-12">
           <h2 className="text-3xl md:text-4xl font-bold">CONTACT</h2>
           <div className="flex-1 h-px bg-border" />
-          <span className="text-xs text-muted-foreground font-mono">
-            [COMM_LINKS]
-          </span>
+          <span className="text-xs text-muted-foreground font-mono">[COMM_LINKS]</span>
         </div>
 
         {/* Contact grid */}
@@ -35,9 +33,7 @@ const ContactSection = () => {
                 <span className="text-xs text-muted-foreground group-hover:text-primary-foreground transition-colors block">
                   {link.label}
                 </span>
-                <span className="font-bold truncate block">
-                  {link.value}
-                </span>
+                <span className="font-bold truncate block">{link.value}</span>
               </div>
             </a>
           ))}
@@ -45,13 +41,8 @@ const ContactSection = () => {
 
         {/* CTA */}
         <div className="mt-16 text-center">
-          <p className="text-muted-foreground mb-6">
-            Ready to build something extraordinary together?
-          </p>
-          <a 
-            href="mailto:hello@example.com"
-            className="btn-industrial inline-flex items-center gap-3"
-          >
+          <p className="text-muted-foreground mb-6">Ready to build something extraordinary together?</p>
+          <a href="mailto:hello@example.com" className="btn-industrial inline-flex items-center gap-3">
             <Mail size={20} />
             <span>INITIATE CONTACT</span>
           </a>
