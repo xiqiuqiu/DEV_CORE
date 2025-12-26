@@ -117,6 +117,7 @@ export const useTerminal = (onThemeChange?: (theme: string) => void) => {
           '╠════════════════════════════════════════╣',
           '║ help          - Show this help menu    ║',
           '║ clear         - Clear terminal         ║',
+          '║ reset         - Reboot terminal        ║',
           '║ whoami        - Display profile        ║',
           '║ ls [-l]       - List projects          ║',
           '║ cat <project> - Project details        ║',
@@ -133,6 +134,35 @@ export const useTerminal = (onThemeChange?: (theme: string) => void) => {
       description: 'Clear terminal',
       handler: () => {
         setLogs([{ id: String(idCounter.current++), type: 'sys', content: '> Terminal cleared' }]);
+      },
+    },
+    reset: {
+      description: 'Reboot terminal',
+      handler: (_, addLog) => {
+        addLog({ type: 'sys', content: '> Initiating system reboot...' });
+        setTimeout(() => {
+          // Clear logs and reset counter
+          setLogs([]);
+          idCounter.current = 0;
+          setIsBooting(true);
+          
+          // Run boot sequence again
+          bootSequence.forEach(({ content, delay }) => {
+            setTimeout(() => {
+              setLogs(prev => [...prev, {
+                id: String(idCounter.current++),
+                type: 'sys',
+                content,
+                timestamp: new Date().toLocaleTimeString('en-US', { hour12: false }),
+              }]);
+            }, delay);
+          });
+
+          // Boot complete
+          setTimeout(() => {
+            setIsBooting(false);
+          }, bootSequence[bootSequence.length - 1].delay + 100);
+        }, 500);
       },
     },
     whoami: {
