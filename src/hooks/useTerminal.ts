@@ -35,14 +35,28 @@ const dockerContainers = [
 ];
 
 export const useTerminal = (onThemeChange?: (theme: string) => void) => {
-  const [logs, setLogs] = useState<TerminalLog[]>([
-    { id: '0', type: 'sys', content: '> SYSTEM INITIALIZED' },
-    { id: '1', type: 'sys', content: '> Type "help" for available commands' },
-  ]);
+  const [logs, setLogs] = useState<TerminalLog[]>(() => {
+    const savedTheme = localStorage.getItem('user-theme');
+    const initLogs: TerminalLog[] = [
+      { id: '0', type: 'sys', content: '> SYSTEM INITIALIZED' },
+    ];
+    
+    if (savedTheme && ['dark', 'light', 'minimal'].includes(savedTheme)) {
+      initLogs.push({ id: '1', type: 'sys', content: `> Loading saved theme: ${savedTheme.toUpperCase()}...` });
+      // Apply saved theme on mount
+      setTimeout(() => {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        onThemeChange?.(savedTheme);
+      }, 100);
+    }
+    
+    initLogs.push({ id: '2', type: 'sys', content: '> Type "help" for available commands' });
+    return initLogs;
+  });
   const [inputValue, setInputValue] = useState('');
   const [historyIndex, setHistoryIndex] = useState(-1);
   const commandHistory = useRef<string[]>([]);
-  const idCounter = useRef(2);
+  const idCounter = useRef(3);
 
   const addLog = useCallback((log: Omit<TerminalLog, 'id'>) => {
     const newLog: TerminalLog = {
@@ -179,8 +193,10 @@ export const useTerminal = (onThemeChange?: (theme: string) => void) => {
         if (['dark', 'light', 'minimal'].includes(mode)) {
           addLog({ type: 'sys', content: `> Applying theme: ${mode.toUpperCase()}...` });
           setTimeout(() => {
+            localStorage.setItem('user-theme', mode);
             onThemeChange?.(mode);
             addLog({ type: 'sys', content: `> Theme switched to ${mode.toUpperCase()}` });
+            addLog({ type: 'sys', content: `> Preference saved to localStorage` });
           }, 300);
         } else {
           addLog({ type: 'err', content: 'Usage: theme <dark|light|minimal>' });
