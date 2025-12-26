@@ -6,11 +6,7 @@ const navItems = [
   { label: 'CONTACT', href: '#contact' },
 ];
 
-interface TopBarProps {
-  onNavClick?: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
-}
-
-const TopBar = ({ onNavClick }: TopBarProps) => {
+const TopBar = () => {
   return (
     <header className="fixed top-0 left-16 md:left-20 right-0 h-14 border-b border-border bg-background/80 backdrop-blur-sm z-40 flex items-center justify-between px-6">
       {/* System status */}
@@ -27,7 +23,6 @@ const TopBar = ({ onNavClick }: TopBarProps) => {
           <a
             key={item.label}
             href={item.href}
-            onClick={(e) => onNavClick?.(e, item.href)}
             className="text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors relative group"
           >
             {item.label}

@@ -17,22 +17,11 @@ const IndexContent = () => {
   const { triggerTransition } = usePageTransition();
 
   const handleThemeChange = useCallback((theme: string) => {
-    // Add flash effect
-    setIsFlashing(true);
-    setTimeout(() => setIsFlashing(false), 300);
-
-    // Apply theme
-    document.documentElement.setAttribute('data-theme', theme);
-  }, []);
-
-  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
+    // Trigger scanline transition, then apply theme at midpoint
     triggerTransition(() => {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-      window.location.hash = href;
+      setIsFlashing(true);
+      setTimeout(() => setIsFlashing(false), 300);
+      document.documentElement.setAttribute('data-theme', theme);
     });
   }, [triggerTransition]);
 
@@ -44,7 +33,7 @@ const IndexContent = () => {
       
       {/* Fixed layout elements */}
       <LeftSidebar />
-      <TopBar onNavClick={handleNavClick} />
+      <TopBar />
       <DataPanel onThemeChange={handleThemeChange} />
 
       {/* Main content */}
