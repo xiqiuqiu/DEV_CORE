@@ -1,4 +1,5 @@
 import GrainOverlay from '@/components/GrainOverlay';
+import ScanlineOverlay from '@/components/ScanlineOverlay';
 import LeftSidebar from '@/components/LeftSidebar';
 import TopBar from '@/components/TopBar';
 import DataPanel from '@/components/DataPanel';
@@ -12,8 +13,9 @@ import Footer from '@/components/Footer';
 const Index = () => {
   return (
     <div className="min-h-screen bg-background grid-bg">
-      {/* Grain overlay */}
+      {/* Overlays */}
       <GrainOverlay />
+      <ScanlineOverlay />
       
       {/* Fixed layout elements */}
       <LeftSidebar />
