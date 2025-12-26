@@ -1,4 +1,5 @@
 import LiveTerminal from './LiveTerminal';
+import FrequencyChart from './FrequencyChart';
 
 const telemetryData = [
   { label: 'UPTIME', value: '99.9%' },
@@ -33,21 +34,7 @@ const DataPanel = () => {
         <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-card-foreground">
           FREQ ANALYSIS
         </h4>
-        <svg viewBox="0 0 200 60" className="w-full h-16">
-          {Array.from({ length: 40 }).map((_, i) => {
-            const height = Math.random() * 40 + 10;
-            return (
-              <rect
-                key={i}
-                x={i * 5}
-                y={60 - height}
-                width="3"
-                height={height}
-                className="fill-primary/80"
-              />
-            );
-          })}
-        </svg>
+        <FrequencyChart />
       </div>
 
       {/* Live terminal */}
