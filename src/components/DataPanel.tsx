@@ -51,13 +51,14 @@ const DataPanel = ({ onThemeChange }: DataPanelProps) => {
           {/* Player iframe */}
           <div className="relative">
             <iframe
-              src="https://dontpanic92.github.io/embedded-netease-music-player/embedded-netease-music-player.html?536622304"
+              src="//music.163.com/outchain/player?type=2&id=5256051&auto=1&height=66"
               width="100%"
               height="96"
               frameBorder="0"
               className="border-0 block"
               title="Music Player"
             />
+            {/* <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=5256051&auto=1&height=66"></iframe> */}
             {/* Subtle scanline overlay */}
             <div 
               className="pointer-events-none absolute inset-0 opacity-10"
