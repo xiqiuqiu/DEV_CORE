@@ -1,4 +1,4 @@
-import LiveTerminal from './LiveTerminal';
+import InteractiveTerminal from './InteractiveTerminal';
 import FrequencyChart from './FrequencyChart';
 
 const telemetryData = [
@@ -8,7 +8,11 @@ const telemetryData = [
   { label: 'MEMORY', value: '256MB' },
 ];
 
-const DataPanel = () => {
+interface DataPanelProps {
+  onThemeChange?: (theme: string) => void;
+}
+
+const DataPanel = ({ onThemeChange }: DataPanelProps) => {
   return (
     <aside className="hidden lg:block fixed right-0 top-14 bottom-0 w-72 xl:w-80 border-l border-border bg-card text-card-foreground overflow-y-auto z-30">
       {/* Header */}
@@ -37,13 +41,13 @@ const DataPanel = () => {
         <FrequencyChart />
       </div>
 
-      {/* Live terminal */}
+      {/* Interactive terminal */}
       <div className="p-4">
         <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-card-foreground">
-          SYSTEM LOG
+          TERMINAL
         </h4>
         <div className="bg-background p-3 border border-border">
-          <LiveTerminal />
+          <InteractiveTerminal onThemeChange={onThemeChange} />
         </div>
       </div>
     </aside>
