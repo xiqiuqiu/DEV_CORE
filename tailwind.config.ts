@@ -90,6 +90,18 @@ export default {
           "0%": { top: "0%" },
           "100%": { top: "100%" },
         },
+        "scanline-sweep": {
+          "0%": { top: "-100px" },
+          "100%": { top: "100%" },
+        },
+        "flash-pulse": {
+          "0%, 100%": { opacity: "0" },
+          "50%": { opacity: "0.15" },
+        },
+        "blink": {
+          "0%, 50%": { opacity: "1" },
+          "51%, 100%": { opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -97,6 +109,10 @@ export default {
         "terminal-scroll": "terminal-scroll 20s linear infinite",
         "flicker": "flicker 0.15s ease-in-out infinite",
         "scan": "scan 8s linear infinite",
+        "scanline-sweep": "scanline-sweep 0.8s ease-in-out forwards",
+        "scanline-sweep-delayed": "scanline-sweep 0.8s ease-in-out 0.1s forwards",
+        "flash-pulse": "flash-pulse 0.8s ease-in-out",
+        "blink": "blink 1s step-end infinite",
       },
     },
   },
