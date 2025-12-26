@@ -1,5 +1,4 @@
 import InteractiveTerminal from './InteractiveTerminal';
-import FrequencyChart from './FrequencyChart';
 
 const telemetryData = [
   { label: 'UPTIME', value: '99.9%' },
@@ -33,12 +32,21 @@ const DataPanel = ({ onThemeChange }: DataPanelProps) => {
         ))}
       </div>
 
-      {/* Frequency visualization */}
+      {/* Music player */}
       <div className="p-4 border-b border-border">
         <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-card-foreground">
-          FREQ ANALYSIS
+          MUSIC PLAYER
         </h4>
-        <FrequencyChart />
+        <div className="w-full overflow-hidden">
+          <iframe
+            src="https://dontpanic92.github.io/embedded-netease-music-player/embedded-netease-music-player.html?536622304"
+            width="100%"
+            height="96"
+            frameBorder="0"
+            className="border-0"
+            title="Music Player"
+          />
+        </div>
       </div>
 
       {/* Interactive terminal */}
