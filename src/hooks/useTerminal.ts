@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 
 export interface TerminalLog {
   id: string;
@@ -34,29 +34,59 @@ const dockerContainers = [
   { id: 'i9j0k1l2', name: 'redis-cache', status: 'Up 42h', ports: '6379/tcp' },
 ];
 
+// Boot sequence messages
+const bootSequence = [
+  { content: '> INITIALIZING SYSTEM...', delay: 0 },
+  { content: '> Loading kernel modules...', delay: 300 },
+  { content: '> [OK] Memory check passed', delay: 600 },
+  { content: '> [OK] Display driver initialized', delay: 900 },
+  { content: '> [OK] Network interface configured', delay: 1200 },
+  { content: '> Mounting filesystem...', delay: 1500 },
+  { content: '> [OK] /dev/portfolio mounted', delay: 1800 },
+  { content: '> Starting services...', delay: 2100 },
+  { content: '> [OK] Terminal emulator ready', delay: 2400 },
+  { content: '> ────────────────────────────────────', delay: 2700 },
+  { content: "> Welcome, Recruiter. Type 'help' to explore the terminal.", delay: 3000 },
+];
+
 export const useTerminal = (onThemeChange?: (theme: string) => void) => {
-  const [logs, setLogs] = useState<TerminalLog[]>(() => {
-    const savedTheme = localStorage.getItem('user-theme');
-    const initLogs: TerminalLog[] = [
-      { id: '0', type: 'sys', content: '> SYSTEM INITIALIZED' },
-    ];
-    
-    if (savedTheme && ['dark', 'light', 'minimal'].includes(savedTheme)) {
-      initLogs.push({ id: '1', type: 'sys', content: `> Loading saved theme: ${savedTheme.toUpperCase()}...` });
-      // Apply saved theme on mount
-      setTimeout(() => {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        onThemeChange?.(savedTheme);
-      }, 100);
-    }
-    
-    initLogs.push({ id: '2', type: 'sys', content: '> Type "help" for available commands' });
-    return initLogs;
-  });
+  const [logs, setLogs] = useState<TerminalLog[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const [isBooting, setIsBooting] = useState(true);
   const commandHistory = useRef<string[]>([]);
-  const idCounter = useRef(3);
+  const idCounter = useRef(0);
+  const hasBooted = useRef(false);
+
+  // Boot sequence effect
+  useEffect(() => {
+    if (hasBooted.current) return;
+    hasBooted.current = true;
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('user-theme');
+    if (savedTheme && ['dark', 'light', 'minimal'].includes(savedTheme)) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      onThemeChange?.(savedTheme);
+    }
+
+    // Run boot sequence
+    bootSequence.forEach(({ content, delay }) => {
+      setTimeout(() => {
+        setLogs(prev => [...prev, {
+          id: String(idCounter.current++),
+          type: 'sys',
+          content,
+          timestamp: new Date().toLocaleTimeString('en-US', { hour12: false }),
+        }]);
+      }, delay);
+    });
+
+    // Boot complete
+    setTimeout(() => {
+      setIsBooting(false);
+    }, bootSequence[bootSequence.length - 1].delay + 100);
+  }, [onThemeChange]);
 
   const addLog = useCallback((log: Omit<TerminalLog, 'id'>) => {
     const newLog: TerminalLog = {
