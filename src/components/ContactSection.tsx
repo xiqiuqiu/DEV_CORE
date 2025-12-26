@@ -1,10 +1,10 @@
 import { Mail, Github, Linkedin, Twitter } from "lucide-react";
 
 const contactLinks = [
-  { icon: Mail, label: "EMAIL", href: "mailto:hello@example.com", value: "hello@example.com" },
+  { icon: Mail, label: "EMAIL", href: "mailto:ixiqiuqiu@gmail.com", value: "ixiqiuqiu@gmail.com" },
   { icon: Github, label: "GITHUB", href: "https://github.com/xiqiuqiu", value: "@xiqiuqiu" },
   // { icon: Linkedin, label: 'LINKEDIN', href: 'https://linkedin.com', value: 'in/devcore' },
-  { icon: Twitter, label: "TWITTER", href: "https://twitter.com", value: "@devcore" },
+  { icon: Twitter, label: "TWITTER", href: "https://twitter.com", value: "@logic_zy" },
 ];
 
 const ContactSection = () => {
