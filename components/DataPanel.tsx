@@ -1,12 +1,8 @@
+"use client";
+
 import { useEffect, useState } from 'react';
 import InteractiveTerminal from './InteractiveTerminal';
-
-const telemetryData = [
-  { label: 'UPTIME', value: '99.9%' },
-  { label: 'LATENCY', value: '12ms' },
-  { label: 'THROUGHPUT', value: '847 req/s' },
-  { label: 'MEMORY', value: '256MB' },
-];
+import { useI18n } from '@/lib/i18n/context';
 
 interface DataPanelProps {
   onThemeChange?: (theme: string) => void;
@@ -14,6 +10,14 @@ interface DataPanelProps {
 
 const DataPanel = ({ onThemeChange }: DataPanelProps) => {
   const [mounted, setMounted] = useState(false);
+  const { t } = useI18n();
+
+  const telemetryData = [
+    { label: t.dataPanel.uptime, value: '99.9%' },
+    { label: t.dataPanel.latency, value: '12ms' },
+    { label: t.dataPanel.throughput, value: '847 req/s' },
+    { label: t.dataPanel.memory, value: '256MB' },
+  ];
 
   useEffect(() => {
     setMounted(true);
@@ -24,9 +28,9 @@ const DataPanel = ({ onThemeChange }: DataPanelProps) => {
       {/* Header */}
       <div className="p-4 border-b border-border bg-primary text-primary-foreground">
         <h3 className="text-sm font-bold uppercase tracking-wider">
-          TELEMETRY DATA
+          {t.dataPanel.telemetryData}
         </h3>
-        <p className="text-xs opacity-80 mt-1">REAL-TIME SYSTEM METRICS</p>
+        <p className="text-xs opacity-80 mt-1">{t.dataPanel.realTimeMetrics}</p>
       </div>
 
       {/* Telemetry rows */}
@@ -43,7 +47,7 @@ const DataPanel = ({ onThemeChange }: DataPanelProps) => {
       <div className="p-4 border-b border-border">
         <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-card-foreground flex items-center gap-2">
           <span className="inline-block w-2 h-2 bg-primary animate-pulse" />
-          AUDIO STREAM
+          {t.dataPanel.audioStream}
         </h4>
         <div className="relative w-full overflow-hidden border border-border bg-background">
           {/* Decorative top bar */}
@@ -53,7 +57,7 @@ const DataPanel = ({ onThemeChange }: DataPanelProps) => {
               <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
               <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
             </div>
-            <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">LIVE</span>
+            <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">{t.dataPanel.live}</span>
           </div>
           {/* Player iframe */}
           <div className="relative">
@@ -65,7 +69,6 @@ const DataPanel = ({ onThemeChange }: DataPanelProps) => {
               className="border-0 block"
               title="Music Player"
             />
-            {/* <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=5256051&auto=1&height=66"></iframe> */}
             {/* Subtle scanline overlay */}
             <div
               className="pointer-events-none absolute inset-0 opacity-10"
@@ -92,7 +95,7 @@ const DataPanel = ({ onThemeChange }: DataPanelProps) => {
       {/* Interactive terminal */}
       <div className="p-4">
         <h4 className="text-xs font-bold uppercase tracking-wider mb-4 text-card-foreground">
-          TERMINAL
+          {t.dataPanel.terminal}
         </h4>
         <div className="bg-background p-3 border border-border">
           <InteractiveTerminal onThemeChange={onThemeChange} />
@@ -103,4 +106,3 @@ const DataPanel = ({ onThemeChange }: DataPanelProps) => {
 };
 
 export default DataPanel;
-

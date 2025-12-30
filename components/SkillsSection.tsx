@@ -1,3 +1,7 @@
+"use client";
+
+import { useI18n } from '@/lib/i18n/context';
+
 const skills = [
   { name: 'TypeScript', level: 95, category: 'LANG' },
   { name: 'Vue', level: 92, category: 'FE' },
@@ -8,15 +12,17 @@ const skills = [
 ];
 
 const SkillsSection = () => {
+  const { t } = useI18n();
+
   return (
     <section id="skills" className="py-24 px-8 bg-secondary/30">
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
         <div className="flex items-center gap-4 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold">TECH STACK</h2>
+          <h2 className="text-3xl md:text-4xl font-bold">{t.skills.title}</h2>
           <div className="flex-1 h-px bg-border" />
           <span className="text-xs text-muted-foreground font-mono">
-            [CAPABILITY METRICS]
+            [{t.skills.metrics}]
           </span>
         </div>
 

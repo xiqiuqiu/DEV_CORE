@@ -1,19 +1,26 @@
-const navItems = [
-  { label: 'INDEX', href: '#hero' },
-  { label: 'PROJECTS', href: '#projects' },
-  { label: 'SKILLS', href: '#skills' },
-  { label: 'ABOUT', href: '#about' },
-  { label: 'CONTACT', href: '#contact' },
-];
+"use client";
+
+import { useI18n } from '@/lib/i18n/context';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const TopBar = () => {
+  const { t } = useI18n();
+
+  const navItems = [
+    { label: t.nav.index, href: '#hero' },
+    { label: t.nav.projects, href: '#projects' },
+    { label: t.nav.skills, href: '#skills' },
+    { label: t.nav.about, href: '#about' },
+    { label: t.nav.contact, href: '#contact' },
+  ];
+
   return (
     <header className="fixed top-0 left-16 md:left-20 right-0 h-14 border-b border-border bg-background/80 backdrop-blur-sm z-40 flex items-center justify-between px-6">
       {/* System status */}
       <div className="flex items-center gap-3">
         <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
         <span className="text-xs text-muted-foreground font-mono uppercase">
-          SYS_ONLINE
+          {t.status.sysOnline}
         </span>
       </div>
 
@@ -31,10 +38,13 @@ const TopBar = () => {
         ))}
       </nav>
 
-      {/* Status badge */}
-      <div className="flex items-center gap-2 px-3 py-1 border border-primary/50 bg-primary/10">
-        <div className="w-2 h-2 rounded-full bg-primary" />
-        <span className="text-xs font-mono text-primary uppercase">Available</span>
+      {/* Right side controls */}
+      <div className="flex items-center gap-4">
+        <LanguageSwitcher />
+        <div className="flex items-center gap-2 px-3 py-1 border border-primary/50 bg-primary/10">
+          <div className="w-2 h-2 rounded-full bg-primary" />
+          <span className="text-xs font-mono text-primary uppercase">{t.status.available}</span>
+        </div>
       </div>
     </header>
   );

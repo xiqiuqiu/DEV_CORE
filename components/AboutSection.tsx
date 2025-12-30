@@ -1,13 +1,19 @@
+"use client";
+
+import { useI18n } from '@/lib/i18n/context';
+
 const AboutSection = () => {
+  const { t } = useI18n();
+
   return (
     <section id="about" className="py-24 px-8">
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
         <div className="flex items-center gap-4 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold">ABOUT</h2>
+          <h2 className="text-3xl md:text-4xl font-bold">{t.about.title}</h2>
           <div className="flex-1 h-px bg-border" />
           <span className="text-xs text-muted-foreground font-mono">
-            [BIO_DATA]
+            [{t.about.bioData}]
           </span>
         </div>
 
@@ -15,18 +21,13 @@ const AboutSection = () => {
           {/* Bio text */}
           <div className="border-l-4 border-primary pl-6 space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm a full-stack developer with 7+ years of experience building 
-              high-performance web applications and distributed systems.
+              {t.about.bio1}
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              My expertise spans from crafting pixel-perfect user interfaces to 
-              architecting scalable backend infrastructure. I'm passionate about 
-              clean code, system design, and pushing the boundaries of what's 
-              possible on the web.
+              {t.about.bio2}
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              When not coding, I contribute to open-source projects and write 
-              technical articles about software architecture and best practices.
+              {t.about.bio3}
             </p>
           </div>
 
@@ -34,43 +35,43 @@ const AboutSection = () => {
           <div className="space-y-6">
             <div className="border border-border p-6">
               <h3 className="text-xs text-muted-foreground uppercase tracking-widest mb-4">
-                CURRENT STATUS
+                {t.about.currentStatus}
               </h3>
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 rounded-full bg-terminal animate-pulse" />
-                <span className="font-bold">Senior Software Engineer</span>
+                <span className="font-bold">{t.about.jobTitle}</span>
               </div>
               <p className="text-muted-foreground mt-2 text-sm">
-                Building developer tools and infrastructure
+                {t.about.jobDesc}
               </p>
             </div>
 
             <div className="border border-border p-6">
               <h3 className="text-xs text-muted-foreground uppercase tracking-widest mb-4">
-                METRICS
+                {t.about.metricsTitle}
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <span className="text-3xl font-bold text-primary">7+</span>
-                  <p className="text-xs text-muted-foreground uppercase">Years Exp</p>
+                  <p className="text-xs text-muted-foreground uppercase">{t.about.yearsExp}</p>
                 </div>
                 <div>
                   <span className="text-3xl font-bold text-primary">50+</span>
-                  <p className="text-xs text-muted-foreground uppercase">Projects</p>
+                  <p className="text-xs text-muted-foreground uppercase">{t.about.projectsCount}</p>
                 </div>
                 <div>
                   <span className="text-3xl font-bold text-primary">12k</span>
-                  <p className="text-xs text-muted-foreground uppercase">Commits</p>
+                  <p className="text-xs text-muted-foreground uppercase">{t.about.commits}</p>
                 </div>
                 <div>
                   <span className="text-3xl font-bold text-primary">∞</span>
-                  <p className="text-xs text-muted-foreground uppercase">Coffee</p>
+                  <p className="text-xs text-muted-foreground uppercase">{t.about.coffee}</p>
                 </div>
               </div>
             </div>
 
             <div className="stamp inline-block">
-              OPEN TO OPPORTUNITIES
+              {t.about.openToOpportunities}
             </div>
           </div>
         </div>

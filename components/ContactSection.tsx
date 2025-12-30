@@ -1,21 +1,25 @@
-import { Mail, Github, Linkedin, Twitter } from "lucide-react";
+"use client";
 
-const contactLinks = [
-  { icon: Mail, label: "EMAIL", href: "mailto:ixiqiuqiu@gmail.com", value: "ixiqiuqiu@gmail.com" },
-  { icon: Github, label: "GITHUB", href: "https://github.com/xiqiuqiu", value: "@xiqiuqiu" },
-  // { icon: Linkedin, label: 'LINKEDIN', href: 'https://linkedin.com', value: 'in/devcore' },
-  { icon: Twitter, label: "TWITTER", href: "https://twitter.com", value: "@logic_zy" },
-];
+import { Mail, Github, Twitter } from "lucide-react";
+import { useI18n } from '@/lib/i18n/context';
 
 const ContactSection = () => {
+  const { t } = useI18n();
+
+  const contactLinks = [
+    { icon: Mail, label: t.contact.email, href: "mailto:ixiqiuqiu@gmail.com", value: "ixiqiuqiu@gmail.com" },
+    { icon: Github, label: t.contact.github, href: "https://github.com/xiqiuqiu", value: "@xiqiuqiu" },
+    { icon: Twitter, label: t.contact.twitter, href: "https://twitter.com", value: "@logic_zy" },
+  ];
+
   return (
     <section id="contact" className="py-24 px-8 bg-secondary/30">
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
         <div className="flex items-center gap-4 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold">CONTACT</h2>
+          <h2 className="text-3xl md:text-4xl font-bold">{t.contact.title}</h2>
           <div className="flex-1 h-px bg-border" />
-          <span className="text-xs text-muted-foreground font-mono">[COMM_LINKS]</span>
+          <span className="text-xs text-muted-foreground font-mono">[{t.contact.commLinks}]</span>
         </div>
 
         {/* Contact grid */}
@@ -41,10 +45,10 @@ const ContactSection = () => {
 
         {/* CTA */}
         <div className="mt-16 text-center">
-          <p className="text-muted-foreground mb-6">Ready to build something extraordinary together?</p>
+          <p className="text-muted-foreground mb-6">{t.contact.cta}</p>
           <a href="mailto:hello@example.com" className="btn-industrial inline-flex items-center gap-3">
             <Mail size={20} />
-            <span>INITIATE CONTACT</span>
+            <span>{t.contact.initiateContact}</span>
           </a>
         </div>
       </div>

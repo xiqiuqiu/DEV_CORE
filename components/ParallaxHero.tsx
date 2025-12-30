@@ -1,7 +1,11 @@
+"use client";
+
 import { useState, useEffect } from 'react';
+import { useI18n } from '@/lib/i18n/context';
 
 const ParallaxHero = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const { t } = useI18n();
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -36,21 +40,20 @@ const ParallaxHero = () => {
         {/* Subtitle */}
         <div className="mt-8 border-l-4 border-primary pl-6 text-left max-w-xl mx-auto">
           <p className="text-lg md:text-xl text-muted-foreground font-mono">
-            Full-stack software developer crafting robust systems and elegant interfaces. 
-            Specializing in modern web technologies and scalable architecture.
+            {t.hero.subtitle}
           </p>
         </div>
 
         {/* Stamp */}
         <div className="mt-32">
           <span className="stamp">
-            CONFIDENTIAL BUILD // V2.4.1
+            {t.hero.stamp}
           </span>
         </div>
 
         {/* Scroll indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-          <span className="text-xs text-muted-foreground uppercase tracking-widest">Scroll</span>
+          <span className="text-xs text-muted-foreground uppercase tracking-widest">{t.hero.scroll}</span>
           <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent" />
         </div>
       </div>

@@ -1,7 +1,13 @@
+"use client";
+
 import { ExternalLink } from 'lucide-react';
-import { projects } from '@/data/projects';
+import { getLocalizedProjects } from '@/data/projects';
+import { useI18n } from '@/lib/i18n/context';
 
 const ProjectsSection = () => {
+  const { t, locale } = useI18n();
+  const projects = getLocalizedProjects(locale);
+
   const handleProjectClick = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -11,10 +17,10 @@ const ProjectsSection = () => {
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
         <div className="flex items-center gap-4 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold">PROJECTS</h2>
+          <h2 className="text-3xl md:text-4xl font-bold">{t.projects.title}</h2>
           <div className="flex-1 h-px bg-border" />
           <span className="text-xs text-muted-foreground font-mono">
-            [{projects.length.toString().padStart(2, '0')} ENTRIES]
+            [{projects.length.toString().padStart(2, '0')} {t.projects.entries}]
           </span>
         </div>
 
