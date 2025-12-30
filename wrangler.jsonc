@@ -9,5 +9,11 @@
     "assets": {
         "directory": ".open-next/assets",
         "binding": "ASSETS"
-    }
+    },
+    "kv_namespaces": [
+        {
+            "binding": "VISIT_COUNTER",
+            "id": "a4158c9de28740d9986f2f23b670197b"
+        }
+    ]
 }

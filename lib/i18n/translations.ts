@@ -76,6 +76,7 @@ export const translations = {
       latency: 'LATENCY',
       throughput: 'THROUGHPUT',
       memory: 'MEMORY',
+      visitors: 'VISITORS',
     },
     // Language switcher
     language: {
@@ -133,7 +134,7 @@ export const translations = {
     contact: {
       title: '联系方式',
       commLinks: '通讯链接',
-      cta: '准备好一起创造非凡了吗？',
+      cta: '聊一聊？',
       initiateContact: '发起联系',
       email: '邮箱',
       github: 'GITHUB',
@@ -160,6 +161,7 @@ export const translations = {
       latency: '延迟',
       throughput: '吞吐量',
       memory: '内存',
+      visitors: '访客数',
     },
     // Language switcher
     language: {

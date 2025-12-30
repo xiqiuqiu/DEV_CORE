@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import InteractiveTerminal from './InteractiveTerminal';
 import { useI18n } from '@/lib/i18n/context';
+import { useVisitCounter } from '@/hooks/useVisitCounter';
 
 interface DataPanelProps {
   onThemeChange?: (theme: string) => void;
@@ -11,12 +12,13 @@ interface DataPanelProps {
 const DataPanel = ({ onThemeChange }: DataPanelProps) => {
   const [mounted, setMounted] = useState(false);
   const { t } = useI18n();
+  const { count: visitCount, loading: visitLoading } = useVisitCounter();
 
   const telemetryData = [
     { label: t.dataPanel.uptime, value: '99.9%' },
     { label: t.dataPanel.latency, value: '12ms' },
     { label: t.dataPanel.throughput, value: '847 req/s' },
-    { label: t.dataPanel.memory, value: '256MB' },
+    { label: t.dataPanel.visitors, value: visitLoading ? '...' : (visitCount?.toLocaleString() ?? '0') },
   ];
 
   useEffect(() => {
