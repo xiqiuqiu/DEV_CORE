@@ -45,4 +45,11 @@ export const projects: Project[] = [
     url: "https://github.com/xiqiuqiu/easy_file_search",
     tags: ["批量搜索", "跨工作表支持", "多关键词搜索", "快速打开", "智能检索"],
   },
+    {
+    id: 6,
+    title: "禅意- 电子木鱼",
+    description: "实现一款精致的电子木鱼（木鱼原型来自国立传统艺术中心）",
+    url: "https://zen-wooden-fish-796478408945.us-west1.run.app/",
+    tags: ["木鱼", "舒缓", "古典意向", "禅语妙言"],
+  },
 ];

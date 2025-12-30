@@ -42,7 +42,7 @@ const ParallaxHero = () => {
         </div>
 
         {/* Stamp */}
-        <div className="mt-12">
+        <div className="mt-32">
           <span className="stamp">
             CONFIDENTIAL BUILD // V2.4.1
           </span>
