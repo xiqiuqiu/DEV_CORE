@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 
 const DigitalClock = () => {
-  const [time, setTime] = useState(new Date());
+  const [mounted, setMounted] = useState(false);
+  const [time, setTime] = useState<Date | null>(null);
 
   useEffect(() => {
+    setMounted(true);
+    setTime(new Date());
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
@@ -14,6 +17,14 @@ const DigitalClock = () => {
     const seconds = date.getSeconds().toString().padStart(2, '0');
     return `TS_${hours}:${minutes}:${seconds}`;
   };
+
+  if (!mounted || !time) {
+    return (
+      <span className="font-mono text-primary tabular-nums">
+        TS_00:00:00
+      </span>
+    );
+  }
 
   return (
     <span className="font-mono text-primary tabular-nums">

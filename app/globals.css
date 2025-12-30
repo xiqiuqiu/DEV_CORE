@@ -4,8 +4,6 @@
 
 /* Brutalist Portfolio Design System - Raw Silkscreen Terminal */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
-
 @layer base {
   :root {
     /* Core Brutalist Palette */
@@ -60,6 +58,10 @@
 
     /* Theme transition */
     --theme-transition: 0.5s ease;
+
+    /* Font variables for Next.js */
+    --font-space-grotesk: var(--font-space-grotesk);
+    --font-space-mono: var(--font-space-mono);
   }
 
   /* Light theme */
@@ -123,12 +125,12 @@
   }
 
   body {
-    @apply bg-background text-foreground font-mono cursor-crosshair;
-    font-family: 'Space Mono', monospace;
+    @apply bg-background text-foreground cursor-crosshair;
+    font-family: var(--font-space-mono), 'Space Mono', monospace;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: -0.02em;

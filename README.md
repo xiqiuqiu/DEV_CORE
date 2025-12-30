@@ -1,73 +1,67 @@
-# Welcome to your Lovable project
+# Raw Interface Portfolio
 
-## Project info
+一款基于 **Next.js 15** 构建的硬核工业风/布鲁塔利主义（Brutalist）个人作品集网站。项目从 Lovable (Vite) 迁移而来，经过全面重构以支持 **SEO 优化** 和 **Cloudflare Pages** 部署。
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🚀 技术栈
 
-## How can I edit this code?
+- **框架**: [Next.js 15 (App Router)](https://nextjs.org/)
+- **语言**: [TypeScript](https://www.typescriptlang.org/)
+- **样式**: [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/)
+- **动画**: [Framer Motion](https://www.framer.com/motion/) + Tailwind Animate
+- **字体**: Space Grotesk (标题) & Space Mono (正文)
+- **部署**: [Cloudflare Pages](https://pages.cloudflare.com/)
 
-There are several ways of editing your application.
+## ✨ 核心特性
 
-**Use Lovable**
+- 🛠 **硬核工业视觉**: 采用网格背景、扫描线（Scanline）和颗粒感（Grain）叠加效果。
+- 🖥 **交互式终端**: 内置模拟终端组件，支持动态命令交互。
+- 📊 **实时遥测数据**: 右侧 Data Panel 展示模拟的实时系统指标与音乐播放器。
+- 🔍 **SEO 友好**: 利用 Next.js Metadata API 进行全站 SEO 优化。
+- 📱 **响应式设计**: 完美适配从桌面端到移动端的所有屏幕。
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 📦 本地开发
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### 1. 克隆项目
+```bash
+git clone <your-repo-url>
+cd raw-interface
 ```
 
-**Edit a file directly in GitHub**
+### 2. 安装依赖
+```bash
+npm install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 3. 配置环境变量
+```bash
+# 目前项目为纯前端应用，暂无必需的环境变量
+```
 
-**Use GitHub Codespaces**
+### 4. 启动开发服务器
+```bash
+npm run dev
+```
+访问 [http://localhost:3000](http://localhost:3000) 查看效果。
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## ☁️ 部署 (Cloudflare Pages)
 
-## What technologies are used for this project?
+本项目已集成 `@opennextjs/cloudflare` 适配器。
 
-This project is built with:
+### 预览构建
+```bash
+npm run preview
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 生产部署建议
+1. 在 Cloudflare 控制面板连接 Git 仓库。
+2. 构建命令：`npx @opennextjs/cloudflare build`
+3. 输出目录：`.open-next/.output`
+4. 确保在 Cloudflare 设置中开启 `nodejs_compat` 标志。
 
-## How can I deploy this project?
+## 📂 目录结构
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- `app/`: Next.js 路由与全局样式
+- `components/`: 所有的 UI 组件（含 UI 原型及业务模块）
+- `hooks/`: 自定义 React Hooks（终端逻辑、水合处理等）
+- `lib/`: 工具函数
+- `data/`: 静态项目与技能数据

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import InteractiveTerminal from './InteractiveTerminal';
 
 const telemetryData = [
@@ -12,6 +13,12 @@ interface DataPanelProps {
 }
 
 const DataPanel = ({ onThemeChange }: DataPanelProps) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <aside className="hidden lg:block fixed right-0 top-14 bottom-0 w-72 xl:w-80 border-l border-border bg-card text-card-foreground overflow-y-auto z-30">
       {/* Header */}
@@ -60,7 +67,7 @@ const DataPanel = ({ onThemeChange }: DataPanelProps) => {
             />
             {/* <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=5256051&auto=1&height=66"></iframe> */}
             {/* Subtle scanline overlay */}
-            <div 
+            <div
               className="pointer-events-none absolute inset-0 opacity-10"
               style={{
                 background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, hsl(var(--foreground) / 0.05) 2px, hsl(var(--foreground) / 0.05) 4px)'
@@ -71,10 +78,10 @@ const DataPanel = ({ onThemeChange }: DataPanelProps) => {
           <div className="px-2 py-1 bg-muted border-t border-border">
             <div className="flex items-center gap-1">
               {[...Array(12)].map((_, i) => (
-                <span 
-                  key={i} 
+                <span
+                  key={i}
                   className="flex-1 h-1 bg-primary/60"
-                  style={{ opacity: 0.3 + Math.random() * 0.7 }}
+                  style={{ opacity: mounted ? 0.3 + Math.random() * 0.7 : 0.5 }}
                 />
               ))}
             </div>
@@ -96,3 +103,4 @@ const DataPanel = ({ onThemeChange }: DataPanelProps) => {
 };
 
 export default DataPanel;
+
