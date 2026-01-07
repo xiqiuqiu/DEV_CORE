@@ -2,6 +2,7 @@
 
 import { useI18n } from '@/lib/i18n/context';
 import type { Locale } from '@/lib/i18n/translations';
+import ScrollReveal from './ScrollReveal';
 
 interface Skill {
   name: string;
@@ -25,33 +26,38 @@ const SkillsSection = () => {
     <section id="skills" className="py-24 px-8 bg-secondary/30">
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
-        <div className="flex items-center gap-4 mb-12">
+        <ScrollReveal animation="fade-right" className="flex items-center gap-4 mb-12">
           <h2 className="text-3xl md:text-4xl font-bold">{t.skills.title}</h2>
           <div className="flex-1 h-px bg-border" />
           <span className="text-xs text-muted-foreground font-mono">
             [{t.skills.metrics}]
           </span>
-        </div>
+        </ScrollReveal>
 
         {/* Skills grid */}
         <div className="grid gap-4">
-          {skills.map((skill) => (
-            <div
+          {skills.map((skill, index) => (
+            <ScrollReveal
               key={skill.name}
-              className="group flex items-center gap-4 p-4 border border-border hover:border-primary transition-colors"
+              animation="fade-up"
+              delay={index * 0.05}
             >
-              <span className="text-xs text-muted-foreground w-16 font-mono">
-                {skill.category}
-              </span>
+              <div
+                className="group flex items-center gap-4 p-4 border border-border hover:border-primary transition-colors"
+              >
+                <span className="text-xs text-muted-foreground w-16 font-mono">
+                  {skill.category}
+                </span>
 
-              <span className="font-bold w-36 group-hover:text-primary transition-colors">
-                {skill.name}
-              </span>
+                <span className="font-bold w-36 group-hover:text-primary transition-colors">
+                  {skill.name}
+                </span>
 
-              <span className="flex-1 text-sm text-muted-foreground">
-                {skill.context[locale as Locale]}
-              </span>
-            </div>
+                <span className="flex-1 text-sm text-muted-foreground">
+                  {skill.context[locale as Locale]}
+                </span>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

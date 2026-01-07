@@ -63,6 +63,28 @@ export const projects: Project[] = [
   {
     id: 3,
     title: {
+      en: "Bicon-automated-trading", // 自动抓取的标题
+      zh: "Bicon 自动化交易", // 根据网址推测的中文名，请根据实际情况修改
+    },
+    description: {
+      en: "A comprehensive automated trading platform for coin trading.",
+      zh: "一个综合的自动化交易平台，用于Coin交易。",
+    },
+    highlight: {
+      en: "Coin Trading / High Performance",
+      zh: "币种交易 / 高性能前端", // 推测的亮点
+    },
+    url: "https://frontend.futures.trding.xyz/#/",
+    tags: [
+      { en: "Coin", zh: "币种" },
+      { en: "Trading", zh: "交易" },
+      { en: "Frontend", zh: "前端" },
+      { en: "Web3", zh: "Web3" }, // 若涉及加密货币，通常此类域名与Web3相关
+    ],
+  },
+  {
+    id: 4,
+    title: {
       en: "Zen - Digital Wooden Fish",
       zh: "禅意 - 电子木鱼",
     },
@@ -79,7 +101,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     title: {
       en: "KatelyaTV",
       zh: "KatelyaTV",
@@ -97,7 +119,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     title: {
       en: "LegalEagle AI",
       zh: "LegalEagle AI",
@@ -115,7 +137,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     title: {
       en: "Excel Keyword Search Tool",
       zh: "Excel关键词搜索工具",

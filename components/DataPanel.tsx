@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import CountUp from './CountUp';
 import InteractiveTerminal from './InteractiveTerminal';
+
 import { useI18n } from '@/lib/i18n/context';
 import { useVisitCounter } from '@/hooks/useVisitCounter';
 
@@ -14,8 +16,16 @@ const DataPanel = ({ onThemeChange }: DataPanelProps) => {
   const { t } = useI18n();
   const { count: visitCount, loading: visitLoading } = useVisitCounter();
 
+  // Calculate uptime since 2026-01-06
+  const launchDate = new Date('2026-01-06T00:00:00').getTime();
+  const now = new Date().getTime();
+  const uptimeHours = Math.max(0, Math.floor((now - launchDate) / (1000 * 60 * 60)));
+  const uptimeDays = (uptimeHours / 24).toFixed(1);
+
+  const uptimeDisplay = uptimeHours > 48 ? `${uptimeDays}d` : `${uptimeHours}h`;
+
   const telemetryData = [
-    { label: t.dataPanel.uptime, value: '99.9%' },
+    { label: t.dataPanel.uptime, value: uptimeDisplay },
     { label: t.dataPanel.latency, value: '12ms' },
     { label: t.dataPanel.throughput, value: '847 req/s' },
     { label: t.dataPanel.visitors, value: visitLoading ? '...' : (visitCount?.toLocaleString() ?? '0') },
@@ -40,7 +50,9 @@ const DataPanel = ({ onThemeChange }: DataPanelProps) => {
         {telemetryData.map((item) => (
           <div key={item.label} className="data-row text-card-foreground">
             <span className="text-xs opacity-70">{item.label}</span>
-            <span className="font-bold">{item.value}</span>
+            <span className="font-bold">
+              <CountUp value={item.value} delay={0.5} />
+            </span>
           </div>
         ))}
       </div>

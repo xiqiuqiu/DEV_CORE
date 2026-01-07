@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useI18n } from '@/lib/i18n/context';
+import ScrollReveal from './ScrollReveal';
 
 const ParallaxHero = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -22,7 +23,7 @@ const ParallaxHero = () => {
     <section id="hero" className="min-h-screen flex items-center justify-center relative py-20 overflow-hidden">
       <div className="relative z-10 text-center px-8">
         {/* Title Container to ensure alignment */}
-        <div className="relative inline-block">
+        <ScrollReveal animation="scale" duration={0.8} delay={0.2} className="relative inline-block">
           {/* Shadow layer */}
           <h1
             className="text-[8vw] md:text-[12vw] font-bold leading-none text-primary/20 absolute inset-0 select-none font-ocera"
@@ -41,10 +42,10 @@ const ParallaxHero = () => {
           >
             SIGCLR
           </h1>
-        </div>
+        </ScrollReveal>
 
         {/* Subtitle with Tagline */}
-        <div className="mt-8 text-center max-w-2xl mx-auto space-y-4">
+        <ScrollReveal animation="fade-up" delay={0.6} className="mt-8 text-center max-w-2xl mx-auto space-y-4">
           {/* Primary Tagline */}
           {/* <h2 className="text-xl md:text-2xl font-semibold text-primary tracking-wide">
             {t.hero.tagline}
@@ -55,14 +56,14 @@ const ParallaxHero = () => {
               {t.hero.subtitle}
             </p>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Stamp */}
-        <div className="mt-32">
+        <ScrollReveal animation="fade-right" delay={1} className="mt-32">
           <span className="stamp">
             {t.hero.stamp}
           </span>
-        </div>
+        </ScrollReveal>
 
         {/* Scroll indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
