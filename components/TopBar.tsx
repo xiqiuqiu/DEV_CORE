@@ -2,6 +2,7 @@
 
 import { useI18n } from '@/lib/i18n/context';
 import LanguageSwitcher from './LanguageSwitcher';
+import { NavLink } from './NavLink';
 
 const TopBar = () => {
   const { t } = useI18n();
@@ -27,14 +28,14 @@ const TopBar = () => {
       {/* Navigation */}
       <nav className="hidden md:flex items-center gap-6">
         {navItems.map((item) => (
-          <a
+          <NavLink
             key={item.label}
-            href={item.href}
+            to={item.href}
             className="text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors relative group"
           >
             {item.label}
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all group-hover:w-full" />
-          </a>
+          </NavLink>
         ))}
       </nav>
 

@@ -19,8 +19,8 @@ export const projects: Project[] = [
   {
     id: 1,
     title: {
-      en: "KK Toolbox - Honeycomb Term Search",
-      zh: "KK工具箱 - 蜂巢术搜",
+      en: "Honeycomb Term Search",
+      zh: "蜂巢术搜",
     },
     description: {
       en: 'A high-speed terminology retrieval tool designed for professional translators. Provides millisecond-level queries across massive terminology databases through "Honeycomb" architecture.',

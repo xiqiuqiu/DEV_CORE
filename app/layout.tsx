@@ -9,6 +9,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { I18nProvider } from "@/lib/i18n/context";
 import { cn } from "@/lib/utils";
+import SmoothScroll from "@/components/SmoothScroll";
 
 
 const spaceGrotesk = Space_Grotesk({
@@ -104,15 +105,17 @@ export default function RootLayout({
         >
             <body suppressHydrationWarning>
                 <div className="antialiased min-h-screen">
-                    <I18nProvider>
-                        <QueryProvider>
-                            <TooltipProvider>
-                                <Toaster />
-                                <Sonner />
-                                {children}
-                            </TooltipProvider>
-                        </QueryProvider>
-                    </I18nProvider>
+                    <SmoothScroll>
+                        <I18nProvider>
+                            <QueryProvider>
+                                <TooltipProvider>
+                                    <Toaster />
+                                    <Sonner />
+                                    {children}
+                                </TooltipProvider>
+                            </QueryProvider>
+                        </I18nProvider>
+                    </SmoothScroll>
                     <script
                         type="application/ld+json"
                         dangerouslySetInnerHTML={{

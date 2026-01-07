@@ -12,10 +12,10 @@ interface Skill {
 const skills: Skill[] = [
   { name: 'TypeScript', category: 'LANG', context: { en: 'Type-safe development & tooling', zh: '类型安全开发与工具链' } },
   { name: 'Vue / React', category: 'FE', context: { en: 'Production UI for tools & dashboards', zh: '生产级工具与仪表盘界面' } },
-  { name: 'Node.js / Go', category: 'BE', context: { en: 'REST APIs & event-driven systems', zh: 'REST API 与事件驱动系统' } },
+  { name: 'Node.js', category: 'BE', context: { en: 'REST APIs & event-driven systems', zh: 'REST API 与事件驱动系统' } },
   { name: 'MariaDB / Postgres', category: 'DB', context: { en: 'Schema design & performance tuning', zh: '数据库设计与性能调优' } },
-  { name: 'Docker / K8s', category: 'DEVOPS', context: { en: 'CI/CD & automated deployment', zh: 'CI/CD 与自动化部署' } },
-  { name: 'AWS / Aliyun', category: 'CLOUD', context: { en: 'Scalable infra & cost optimization', zh: '可扩展基础设施与成本优化' } },
+  { name: 'Docker ', category: 'DEVOPS', context: { en: 'CI/CD & automated deployment', zh: 'CI/CD 与自动化部署' } },
+  { name: 'Cloudflare / Aliyun', category: 'CLOUD', context: { en: 'Scalable infra & cost optimization', zh: '可扩展基础设施与成本优化' } },
 ];
 
 const SkillsSection = () => {

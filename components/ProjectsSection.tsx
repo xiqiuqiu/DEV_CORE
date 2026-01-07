@@ -25,7 +25,7 @@ const ProjectsSection = () => {
         </div>
 
         {/* Projects grid */}
-        <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {projects.map((project) => (
             <article
               key={project.id}
@@ -62,11 +62,11 @@ const ProjectsSection = () => {
               </p>
 
               {/* Highlight / Key Value */}
-              {project.highlight && (
+              {/* {project.highlight && (
                 <p className="text-sm text-primary font-mono mb-4 border-l-2 border-primary pl-3">
                   → {project.highlight}
                 </p>
-              )}
+              )} */}
 
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
