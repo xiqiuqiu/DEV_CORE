@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Space_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -20,24 +21,42 @@ const spaceMono = Space_Mono({
     weight: ["400", "700"],
 });
 
+// Local custom font - Ocera
+const ocera = localFont({
+    src: "../components/fonts/ocerapersonnaluse.otf",
+    variable: "--font-ocera",
+    display: "swap",
+});
+
 export const metadata: Metadata = {
     title: {
-        template: "%s | DEV_CORE",
-        default: "DEV_CORE | Design. Code. Deploy.",
+        template: "%s | SIGCLR",
+        default: "SIGCLR – 澄讯空间",
     },
     description:
-        "UI Designer by eye, Full-stack Dev by logic. 4Y Design + 3Y Vue. From Figma prototypes to Docker deployments—handling the complete product lifecycle.",
+        "Signal Over Noise: Systems, Architecture, Tools, & Thoughtful Code. Engineering clarity in complex software systems.",
+    keywords: ["software engineer", "full-stack developer", "portfolio", "web development", "TypeScript", "Vue", "React", "Node.js"],
+    authors: [{ name: "Qiu" }],
+    creator: "Qiu",
     openGraph: {
-        title: "DEV_CORE | Design. Code. Deploy.",
+        title: "SIGCLR – 澄讯空间",
         description:
-            "UI Designer by eye, Full-stack Dev by logic. 4Y Design + 3Y Vue. From Figma prototypes to Docker deployments—handling the complete product lifecycle.",
+            "Signal Over Noise: Systems, Architecture, Tools, & Thoughtful Code.",
         type: "website",
+        siteName: "SIGCLR",
+        locale: "en_US",
+        // images: [{ url: "/og-image.png", width: 1200, height: 630 }], // TODO: Add OG image
     },
     twitter: {
         card: "summary_large_image",
-        title: "DEV_CORE | Design. Code. Deploy.",
+        title: "SIGCLR – 澄讯空间",
         description:
-            "UI Designer by eye, Full-stack Dev by logic. 4Y Design + 3Y Vue. From Figma prototypes to Docker deployments—handling the complete product lifecycle.",
+            "Signal Over Noise: Systems, Architecture, Tools, & Thoughtful Code.",
+        creator: "@logic_zy",
+    },
+    robots: {
+        index: true,
+        follow: true,
     },
 };
 
@@ -49,7 +68,11 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={cn(spaceGrotesk.variable, spaceMono.variable)}
+            className={cn(
+                spaceGrotesk.variable,
+                spaceMono.variable,
+                ocera.variable
+            )}
             suppressHydrationWarning
         >
             <body suppressHydrationWarning>

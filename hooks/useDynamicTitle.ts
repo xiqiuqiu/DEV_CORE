@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const useDynamicTitle = (defaultTitle: string = "ZHI_YI // Portfolio") => {
+const useDynamicTitle = (defaultTitle: string = "DEV_CORE | Design. Code. Deploy.") => {
   const originalTitle = useRef(defaultTitle);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 

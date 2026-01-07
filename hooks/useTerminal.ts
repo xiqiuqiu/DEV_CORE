@@ -45,7 +45,8 @@ const bootSequence = [
   { content: "> Starting services...", delay: 2100 },
   { content: "> [OK] Terminal emulator ready", delay: 2400 },
   { content: "> ────────────────────────────────────", delay: 2700 },
-  { content: "> Welcome, Recruiter. Type 'help' to explore the terminal.", delay: 3000 },
+  { content: "> Welcome to [澄讯空间].", delay: 3000 },
+  { content: "> Recruiter. Type 'help' to explore the terminal.", delay: 3300 },
 ];
 
 export const useTerminal = (onThemeChange?: (theme: string) => void) => {

@@ -27,20 +27,33 @@ const ProjectsSection = () => {
         {/* Projects grid */}
         <div className="space-y-6">
           {projects.map((project) => (
-            <article 
+            <article
               key={project.id}
               onClick={() => handleProjectClick(project.url)}
-              className="group border-2 border-border p-6 hover:border-primary transition-all duration-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0_hsl(var(--primary))] cursor-pointer"
+              className="group border-2 border-border p-6 hover:border-primary transition-all duration-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0_hsl(var(--primary))] cursor-pointer overflow-hidden"
             >
+              {/* Project thumbnail placeholder */}
+              <div className="aspect-video bg-secondary/50 mb-4 overflow-hidden border border-border flex items-center justify-center group-hover:border-primary transition-colors">
+                {project.thumbnail ? (
+                  <img
+                    src={project.thumbnail}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                ) : (
+                  <span className="text-xs font-mono text-muted-foreground">[PREVIEW]</span>
+                )}
+              </div>
+
               <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                 <div>
                   <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
                 </div>
-                <ExternalLink 
-                  size={18} 
-                  className="text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" 
+                <ExternalLink
+                  size={18}
+                  className="text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0"
                 />
               </div>
 
@@ -48,9 +61,16 @@ const ProjectsSection = () => {
                 {project.description}
               </p>
 
+              {/* Highlight / Key Value */}
+              {project.highlight && (
+                <p className="text-sm text-primary font-mono mb-4 border-l-2 border-primary pl-3">
+                  → {project.highlight}
+                </p>
+              )}
+
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
-                  <span 
+                  <span
                     key={tag}
                     className="text-xs px-2 py-1 bg-secondary text-secondary-foreground"
                   >

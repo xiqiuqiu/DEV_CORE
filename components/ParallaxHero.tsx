@@ -19,29 +19,42 @@ const ParallaxHero = () => {
   }, []);
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative py-20">
+    <section id="hero" className="min-h-screen flex items-center justify-center relative py-20 overflow-hidden">
       <div className="relative z-10 text-center px-8">
-        {/* Shadow layer */}
-        <h1 
-          className="text-[8vw] md:text-[12vw] font-bold leading-none text-primary/20 absolute inset-0 select-none"
-          style={{
-            transform: `translate(${mousePos.x}px, ${mousePos.y}px)`,
-            transition: 'transform 0.1s ease-out',
-          }}
-        >
-          DEV_CORE
-        </h1>
-        
-        {/* Main title */}
-        <h1 className="text-[8vw] md:text-[12vw] font-bold leading-none text-foreground relative">
-          DEV_CORE
-        </h1>
-        
-        {/* Subtitle */}
-        <div className="mt-8 border-l-4 border-primary pl-6 text-left max-w-xl mx-auto">
-          <p className="text-lg md:text-xl text-muted-foreground font-mono">
-            {t.hero.subtitle}
-          </p>
+        {/* Title Container to ensure alignment */}
+        <div className="relative inline-block">
+          {/* Shadow layer */}
+          <h1
+            className="text-[8vw] md:text-[12vw] font-bold leading-none text-primary/20 absolute inset-0 select-none font-ocera"
+            style={{
+              transform: `translate(${mousePos.x}px, ${mousePos.y}px)`,
+              transition: 'transform 0.1s ease-out',
+            }}
+          >
+            SIGCLR
+          </h1>
+
+          {/* Main title with Glitch Effect */}
+          <h1
+            className="text-[8vw] md:text-[12vw] font-bold leading-none text-foreground relative font-ocera glitch"
+            data-text="SIGCLR"
+          >
+            SIGCLR
+          </h1>
+        </div>
+
+        {/* Subtitle with Tagline */}
+        <div className="mt-8 text-center max-w-2xl mx-auto space-y-4">
+          {/* Primary Tagline */}
+          {/* <h2 className="text-xl md:text-2xl font-semibold text-primary tracking-wide">
+            {t.hero.tagline}
+          </h2> */}
+          {/* Secondary Description */}
+          <div className="border-l-4 border-primary/50 pl-6 text-center">
+            <p className="text-lg md:text-xl text-muted-foreground font-mono">
+              {t.hero.subtitle}
+            </p>
+          </div>
         </div>
 
         {/* Stamp */}

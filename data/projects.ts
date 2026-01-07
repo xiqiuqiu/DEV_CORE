@@ -11,6 +11,8 @@ export interface Project {
   description: LocalizedText;
   url: string;
   tags: LocalizedText[];
+  thumbnail?: string;           // Optional: project preview image
+  highlight?: LocalizedText;    // Optional: key value/result
 }
 
 export const projects: Project[] = [
@@ -23,6 +25,10 @@ export const projects: Project[] = [
     description: {
       en: 'A high-speed terminology retrieval tool designed for professional translators. Provides millisecond-level queries across massive terminology databases through "Honeycomb" architecture.',
       zh: '专门为专业翻译人员设计的术语高速检索工具。通过"蜂巢"架构提供海量术语库的秒级查询，帮助译者在翻译过程中快速获取精准的行业词汇。',
+    },
+    highlight: {
+      en: 'Millisecond-level retrieval for 10M+ terminology entries',
+      zh: '支持千万级术语条目的毫秒级检索',
     },
     url: "https://frontend.toc.yitransolution.com",
     tags: [
@@ -41,6 +47,10 @@ export const projects: Project[] = [
     description: {
       en: "A comprehensive translation solution platform by YiTran. Provides Translation Management System (TMS), online collaborative translation environment, and terminology management.",
       zh: "易解（YiTran）的综合翻译解决方案平台。提供翻译项目管理（TMS）、在线协作翻译环境以及术语库管理，旨在简化翻译工作流并提高团队协作效率。",
+    },
+    highlight: {
+      en: 'Reduced translation turnaround time by 40%',
+      zh: '翻译周期缩短 40%',
     },
     url: "https://frontend.yitransolution.com",
     tags: [
@@ -133,5 +143,7 @@ export function getLocalizedProjects(locale: Locale) {
     description: project.description[locale],
     url: project.url,
     tags: project.tags.map((tag) => tag[locale]),
+    thumbnail: project.thumbnail,
+    highlight: project.highlight?.[locale],
   }));
 }

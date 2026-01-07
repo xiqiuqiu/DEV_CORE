@@ -18,6 +18,12 @@ const AboutSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
+          {/* Brand Slogan - Full Width */}
+          <div className="md:col-span-2 mb-4">
+            <blockquote className="text-xl md:text-2xl font-semibold text-center italic text-primary border-y border-primary/20 py-6">
+              "{t.about.slogan}"
+            </blockquote>
+          </div>
           {/* Bio text */}
           <div className="border-l-4 border-primary pl-6 space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">

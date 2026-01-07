@@ -45,11 +45,21 @@ const ContactSection = () => {
 
         {/* CTA */}
         <div className="mt-16 text-center">
-          <p className="text-muted-foreground mb-6">{t.contact.cta}</p>
-          <a href="mailto:hello@example.com" className="btn-industrial inline-flex items-center gap-3">
-            <Mail size={20} />
-            <span>{t.contact.initiateContact}</span>
-          </a>
+          <p className="text-lg text-muted-foreground mb-2">{t.contact.cta}</p>
+          <p className="text-sm text-muted-foreground mb-6">{t.contact.ctaDetail}</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="mailto:ixiqiuqiu@gmail.com" className="btn-industrial inline-flex items-center gap-3">
+              <Mail size={20} />
+              <span>{t.contact.initiateContact}</span>
+            </a>
+            <button
+              disabled
+              className="btn-industrial inline-flex items-center gap-3 opacity-50 cursor-not-allowed"
+            >
+              <span>{t.contact.subscribe}</span>
+              <span className="text-xs">{t.contact.comingSoon}</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
