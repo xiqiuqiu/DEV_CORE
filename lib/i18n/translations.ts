@@ -9,7 +9,7 @@ export const translations = {
       contact: 'CONTACT',
     },
     status: {
-      sysOnline: 'SIGCLR - s',
+      sysOnline: 'SIGCLR - 澄讯空间',
       available: 'Available',
     },
     // ParallaxHero
