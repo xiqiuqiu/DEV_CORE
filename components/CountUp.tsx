@@ -67,11 +67,12 @@ const CountUp = ({
         return () => unsubscribe();
     }, [springValue, numericValue, suffix]);
 
-    if (isNaN(numericValue)) {
-        return <span className={className}>{value}</span>;
-    }
-
-    return <span ref={ref} className={className}>{displayValue}</span>;
+    // Always render with ref to ensure tracking works
+    return (
+        <span ref={ref} className={className}>
+            {isNaN(numericValue) ? value : displayValue}
+        </span>
+    );
 };
 
 export default CountUp;
