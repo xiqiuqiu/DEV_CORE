@@ -26,7 +26,7 @@ const ProjectsSection = () => {
         </ScrollReveal>
 
         {/* Projects grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6" >
           {projects.map((project, index) => (
             <ScrollReveal
               key={project.id}
@@ -35,6 +35,7 @@ const ProjectsSection = () => {
               className="h-full"
             >
               <article
+               data-photo-target
                 onClick={() => handleProjectClick(project.url)}
                 className="group h-full border-2 border-border p-6 hover:border-primary transition-all duration-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0_hsl(var(--primary))] cursor-pointer overflow-hidden flex flex-col"
               >

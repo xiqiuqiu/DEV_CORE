@@ -12,6 +12,7 @@ import SkillsSection from "@/components/SkillsSection";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import PhotoModeButton from "@/components/PhotoModeButton";
 import {
     PageTransitionProvider,
     usePageTransition,
@@ -48,13 +49,26 @@ const IndexContent = () => {
             <TopBar />
             <DataPanel onThemeChange={handleThemeChange} />
 
+            {/* Photo Mode Button */}
+            <PhotoModeButton />
+
             {/* Main content */}
             <main className="ml-16 md:ml-20 lg:mr-72 xl:mr-80 pt-14">
-                <ParallaxHero />
-                <ProjectsSection />
-                <SkillsSection />
-                <AboutSection />
-                <ContactSection />
+                <div data-photo-target>
+                    <ParallaxHero />
+                </div>
+                <div data-photo-target>
+                    <ProjectsSection />
+                </div>
+                <div data-photo-target>
+                    <SkillsSection />
+                </div>
+                <div data-photo-target>
+                    <AboutSection />
+                </div>
+                <div data-photo-target>
+                    <ContactSection />
+                </div>
                 <Footer />
             </main>
         </div>
