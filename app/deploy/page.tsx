@@ -168,7 +168,7 @@ export default function DeployPage() {
           <CardHeader>
             <CardTitle>HTML 编辑</CardTitle>
             <CardDescription>
-              断网 + 不同源沙箱预览：JS 可运行，但无法访问网络与同源存储。
+              输入你的 HTML 代码。
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
