@@ -13,6 +13,7 @@ const TopBar = () => {
     { label: t.nav.skills, href: '#skills' },
     { label: t.nav.about, href: '#about' },
     { label: t.nav.contact, href: '#contact' },
+    { label: t.nav.deploy, href: '/deploy' },
   ];
 
   return (

@@ -30,6 +30,11 @@ const IndexContent = () => {
             triggerTransition(() => {
                 setIsFlashing(true);
                 setTimeout(() => setIsFlashing(false), 300);
+                try {
+                    localStorage.setItem("user-theme", theme);
+                } catch {
+                    // ignore
+                }
                 document.documentElement.setAttribute("data-theme", theme);
             });
         },
@@ -50,7 +55,7 @@ const IndexContent = () => {
             <DataPanel onThemeChange={handleThemeChange} />
 
             {/* Photo Mode Button */}
-            <PhotoModeButton />
+            {/* <PhotoModeButton /> */}
 
             {/* Main content */}
             <main className="ml-16 md:ml-20 lg:mr-72 xl:mr-80 pt-14">

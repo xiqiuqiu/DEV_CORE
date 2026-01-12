@@ -104,6 +104,12 @@ export default function RootLayout({
             suppressHydrationWarning
         >
             <body suppressHydrationWarning>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html:
+                            "(function(){try{var t=localStorage.getItem('user-theme');if(t&&['dark','light','minimal'].indexOf(t)!==-1){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();",
+                    }}
+                />
                 <div className="antialiased min-h-screen">
                     <SmoothScroll>
                         <I18nProvider>

@@ -19,6 +19,12 @@ const SmoothScroll = ({ children }: { children?: React.ReactNode }) => {
             // smoothWheel: true, // Default
             wheelMultiplier: 1,
             touchMultiplier: 2,
+            prevent: (node) => {
+                const tag = node.tagName;
+                if (tag === "TEXTAREA" || tag === "INPUT" || tag === "SELECT") return true;
+                if (node.isContentEditable) return true;
+                return false;
+            },
         });
 
         setLenis(lenisInstance);

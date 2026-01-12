@@ -7,6 +7,7 @@ export const translations = {
       skills: 'SKILLS',
       about: 'ABOUT',
       contact: 'CONTACT',
+      deploy: 'DEPLOY',
     },
     status: {
       sysOnline: 'SIGCLR - 澄讯空间',
@@ -97,6 +98,7 @@ export const translations = {
       skills: '技能',
       about: '关于',
       contact: '联系',
+      deploy: '部署',
     },
     status: {
       sysOnline: 'SIGCLR - 澄讯空间',

@@ -6,7 +6,8 @@ interface InteractiveTerminalProps {
 }
 
 const InteractiveTerminal = ({ onThemeChange }: InteractiveTerminalProps) => {
-  const { logs, inputValue, setInputValue, handleKeyDown } = useTerminal(onThemeChange);
+  const { logs, inputValue, setInputValue, handleKeyDown } =
+    useTerminal(onThemeChange);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [cursorPos, setCursorPos] = useState(0);
@@ -49,27 +50,30 @@ const InteractiveTerminal = ({ onThemeChange }: InteractiveTerminalProps) => {
     <div
       ref={containerRef}
       onClick={handleContainerClick}
-      className="h-48 overflow-y-auto font-mono text-xs leading-relaxed scrollbar-none bg-background/50 cursor-text relative"
+      className='h-48 overflow-y-auto font-mono text-xs leading-relaxed scrollbar-none bg-background/50 cursor-text relative'
       style={{
         // CRT effect
         textShadow: '0 0 2px hsl(var(--terminal))',
       }}
     >
       {/* Scanline overlay inside terminal */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-[0.02]"
+      <div
+        className='absolute inset-0 pointer-events-none opacity-[0.02]'
         style={{
-          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 1px, hsl(var(--foreground)) 1px, hsl(var(--foreground)) 2px)',
+          backgroundImage:
+            'repeating-linear-gradient(0deg, transparent, transparent 1px, hsl(var(--foreground)) 1px, hsl(var(--foreground)) 2px)',
           backgroundSize: '100% 3px',
         }}
       />
 
       {/* Logs */}
-      <div className="relative z-10 p-1">
+      <div className='relative z-10 p-1'>
         {logs.map((log) => (
           <div
             key={log.id}
-            className={`${getLogColor(log.type)} opacity-90 hover:opacity-100 transition-opacity whitespace-pre`}
+            className={`${getLogColor(
+              log.type
+            )} opacity-90 hover:opacity-100 transition-opacity whitespace-pre`}
             style={{
               animation: 'fadeIn 0.15s ease-out',
             }}
@@ -79,12 +83,12 @@ const InteractiveTerminal = ({ onThemeChange }: InteractiveTerminalProps) => {
         ))}
 
         {/* Input line */}
-        <div className="flex items-center mt-1">
-          <span className="text-primary mr-1">$</span>
-          <div className="relative flex-1">
+        <div className='flex items-center mt-1'>
+          <span className='text-primary mr-1'>$</span>
+          <div className='relative flex-1'>
             <input
               ref={inputRef}
-              type="text"
+              type='text'
               value={inputValue}
               onChange={(e) => {
                 setInputValue(e.target.value);
@@ -98,15 +102,15 @@ const InteractiveTerminal = ({ onThemeChange }: InteractiveTerminalProps) => {
               onKeyUp={updateCursorPos}
               onClick={updateCursorPos}
               onSelect={updateCursorPos}
-              className="w-full bg-transparent outline-none text-foreground caret-transparent"
+              className='w-full bg-transparent outline-none text-foreground caret-transparent'
               autoFocus
               spellCheck={false}
-              autoComplete="off"
+              autoComplete='off'
             />
             {/* Custom cursor */}
-            <span 
-              className="absolute top-0 h-full w-2 bg-terminal animate-blink pointer-events-none"
-              style={{ 
+            <span
+              className='absolute top-0 h-full w-2 bg-terminal animate-blink pointer-events-none'
+              style={{
                 left: `${cursorPos * 0.6}em`,
               }}
             />
