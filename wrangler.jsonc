@@ -15,5 +15,13 @@
             "binding": "VISIT_COUNTER",
             "id": "a4158c9de28740d9986f2f23b670197b"
         }
-    ]
+    ],
+    "observability": {
+        "logs": {
+            "enabled": true,
+            "head_sampling_rate": 1,
+            "invocation_logs": true,
+            "persist": true
+        }
+    }
 }
