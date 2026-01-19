@@ -43,6 +43,7 @@ function generateBlogData() {
       summary: frontMatter.summary || body.slice(0, 150).replace(/\n/g, ' ').trim() + '...',
       slug: frontMatter.slug || defaultSlug,
       fileName: file,
+      content: body,
     };
   });
 

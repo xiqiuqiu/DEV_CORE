@@ -1,9 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import blogPosts from "@/data/blog-posts.json";
 
@@ -15,6 +12,7 @@ interface BlogPost {
   summary: string;
   slug: string;
   fileName: string;
+  content: string;
 }
 
 // 生成静态路径
@@ -44,18 +42,6 @@ export async function generateMetadata({
   };
 }
 
-// 获取Markdown内容
-async function getPostContent(fileName: string): Promise<string | null> {
-  try {
-    const filePath = path.join(process.cwd(), "blog", fileName);
-    const content = fs.readFileSync(filePath, "utf-8");
-    const { content: markdown } = matter(content);
-    return markdown;
-  } catch {
-    return null;
-  }
-}
-
 export default async function BlogDetailPage({
   params,
 }: {
@@ -67,12 +53,6 @@ export default async function BlogDetailPage({
   const post = (blogPosts as BlogPost[]).find((p) => p.slug === slug);
 
   if (!post) {
-    notFound();
-  }
-
-  const content = await getPostContent(post.fileName);
-
-  if (!content) {
     notFound();
   }
 
@@ -127,7 +107,7 @@ export default async function BlogDetailPage({
 
         {/* Content */}
         <div className="prose dark:prose-invert prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded [&_pre_code]:bg-transparent [&_pre_code]:text-inherit prose-pre:bg-secondary prose-pre:text-secondary-foreground prose-pre:border prose-pre:border-border">
-          <ReactMarkdown>{content}</ReactMarkdown>
+          <ReactMarkdown>{post.content}</ReactMarkdown>
         </div>
 
         {/* Footer */}
