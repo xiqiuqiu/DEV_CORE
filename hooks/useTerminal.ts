@@ -9,15 +9,38 @@ export interface TerminalLog {
 
 interface CommandHandler {
   description: string;
-  handler: (args: string[], addLog: (log: Omit<TerminalLog, "id">) => void) => void | Promise<void>;
+  handler: (
+    args: string[],
+    addLog: (log: Omit<TerminalLog, "id">) => void,
+  ) => void | Promise<void>;
 }
 
 // Portfolio data
 const projects = [
-  { name: "brutalist-ui", tech: "Vue, Tailwind, Framer", status: "LIVE", year: "2025" },
-  { name: "data-viz-platform", tech: "D3.js, Canvas, WebGL", status: "LIVE", year: "2025" },
-  { name: "cli-portfolio", tech: "Vue, TypeScript, GSAP", status: "DEV", year: "2025" },
-  { name: "design-system", tech: "Storybook, CSS-in-JS", status: "LIVE", year: "2023" },
+  {
+    name: "brutalist-ui",
+    tech: "Vue, Tailwind, Framer",
+    status: "LIVE",
+    year: "2025",
+  },
+  {
+    name: "data-viz-platform",
+    tech: "D3.js, Canvas, WebGL",
+    status: "LIVE",
+    year: "2025",
+  },
+  {
+    name: "cli-portfolio",
+    tech: "Vue, TypeScript, GSAP",
+    status: "DEV",
+    year: "2025",
+  },
+  {
+    name: "design-system",
+    tech: "Storybook, CSS-in-JS",
+    status: "LIVE",
+    year: "2023",
+  },
 ];
 
 const skills = [
@@ -28,8 +51,18 @@ const skills = [
 ];
 
 const dockerContainers = [
-  { id: "a1b2c3d4", name: "portfolio-web", status: "Up 42h", ports: "0.0.0.0:3000->3000" },
-  { id: "e5f6g7h8", name: "nginx-proxy", status: "Up 42h", ports: "0.0.0.0:80->80" },
+  {
+    id: "a1b2c3d4",
+    name: "portfolio-web",
+    status: "Up 42h",
+    ports: "0.0.0.0:3000->3000",
+  },
+  {
+    id: "e5f6g7h8",
+    name: "nginx-proxy",
+    status: "Up 42h",
+    ports: "0.0.0.0:80->80",
+  },
   { id: "i9j0k1l2", name: "redis-cache", status: "Up 42h", ports: "6379/tcp" },
 ];
 
@@ -67,7 +100,14 @@ export const useTerminal = (onThemeChange?: (theme: string) => void) => {
     const savedTheme = localStorage.getItem("user-theme");
     if (savedTheme && ["dark", "light", "minimal"].includes(savedTheme)) {
       document.documentElement.setAttribute("data-theme", savedTheme);
+      if (savedTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
       onThemeChange?.(savedTheme);
+    } else {
+      document.documentElement.classList.add("dark");
     }
 
     // Run boot sequence
@@ -79,7 +119,9 @@ export const useTerminal = (onThemeChange?: (theme: string) => void) => {
             id: String(idCounter.current++),
             type: "sys",
             content,
-            timestamp: new Date().toLocaleTimeString("en-US", { hour12: false }),
+            timestamp: new Date().toLocaleTimeString("en-US", {
+              hour12: false,
+            }),
           },
         ]);
       }, delay);
@@ -142,7 +184,13 @@ export const useTerminal = (onThemeChange?: (theme: string) => void) => {
     clear: {
       description: "Clear terminal",
       handler: () => {
-        setLogs([{ id: String(idCounter.current++), type: "sys", content: "> Terminal cleared" }]);
+        setLogs([
+          {
+            id: String(idCounter.current++),
+            type: "sys",
+            content: "> Terminal cleared",
+          },
+        ]);
       },
     },
     reset: {
@@ -164,7 +212,9 @@ export const useTerminal = (onThemeChange?: (theme: string) => void) => {
                   id: String(idCounter.current++),
                   type: "sys",
                   content,
-                  timestamp: new Date().toLocaleTimeString("en-US", { hour12: false }),
+                  timestamp: new Date().toLocaleTimeString("en-US", {
+                    hour12: false,
+                  }),
                 },
               ]);
             }, delay);
@@ -201,13 +251,23 @@ export const useTerminal = (onThemeChange?: (theme: string) => void) => {
         const isLong = args.includes("-l") || args.includes("/projects");
         if (isLong) {
           addLog({ type: "output", content: "drwxr-xr-x  PROJECTS/" });
-          addLog({ type: "output", content: "─────────────────────────────────────────" });
+          addLog({
+            type: "output",
+            content: "─────────────────────────────────────────",
+          });
           projects.forEach((p) => {
-            const status = p.status === "LIVE" ? "\x1b[32m●\x1b[0m" : "\x1b[33m○\x1b[0m";
-            addLog({ type: "output", content: `${status} ${p.name.padEnd(20)} ${p.tech.padEnd(25)} [${p.year}]` });
+            const status =
+              p.status === "LIVE" ? "\x1b[32m●\x1b[0m" : "\x1b[33m○\x1b[0m";
+            addLog({
+              type: "output",
+              content: `${status} ${p.name.padEnd(20)} ${p.tech.padEnd(25)} [${p.year}]`,
+            });
           });
         } else {
-          addLog({ type: "output", content: projects.map((p) => p.name).join("  ") });
+          addLog({
+            type: "output",
+            content: projects.map((p) => p.name).join("  "),
+          });
         }
       },
     },
@@ -215,27 +275,47 @@ export const useTerminal = (onThemeChange?: (theme: string) => void) => {
       description: "Show project details",
       handler: (args, addLog) => {
         const projectName = args[0]?.toLowerCase();
-        const project = projects.find((p) => p.name.toLowerCase() === projectName);
+        const project = projects.find(
+          (p) => p.name.toLowerCase() === projectName,
+        );
         if (!project) {
-          addLog({ type: "err", content: `cat: ${projectName || "undefined"}: No such project` });
-          addLog({ type: "sys", content: "Available: " + projects.map((p) => p.name).join(", ") });
+          addLog({
+            type: "err",
+            content: `cat: ${projectName || "undefined"}: No such project`,
+          });
+          addLog({
+            type: "sys",
+            content: "Available: " + projects.map((p) => p.name).join(", "),
+          });
           return;
         }
-        addLog({ type: "output", content: `╭─ ${project.name.toUpperCase()} ─────────────────────╮` });
+        addLog({
+          type: "output",
+          content: `╭─ ${project.name.toUpperCase()} ─────────────────────╮`,
+        });
         addLog({ type: "output", content: `│ Stack: ${project.tech}` });
         addLog({ type: "output", content: `│ Status: ${project.status}` });
         addLog({ type: "output", content: `│ Year: ${project.year}` });
-        addLog({ type: "output", content: `╰────────────────────────────────────╯` });
+        addLog({
+          type: "output",
+          content: `╰────────────────────────────────────╯`,
+        });
       },
     },
     docker: {
       description: "Docker commands",
       handler: (args, addLog) => {
         if (args[0] === "ps") {
-          addLog({ type: "output", content: "CONTAINER ID   NAME             STATUS      PORTS" });
+          addLog({
+            type: "output",
+            content: "CONTAINER ID   NAME             STATUS      PORTS",
+          });
           addLog({ type: "output", content: "─".repeat(60) });
           dockerContainers.forEach((c) => {
-            addLog({ type: "output", content: `${c.id}       ${c.name.padEnd(16)} ${c.status.padEnd(11)} ${c.ports}` });
+            addLog({
+              type: "output",
+              content: `${c.id}       ${c.name.padEnd(16)} ${c.status.padEnd(11)} ${c.ports}`,
+            });
           });
         } else {
           addLog({ type: "err", content: "Usage: docker ps" });
@@ -247,17 +327,37 @@ export const useTerminal = (onThemeChange?: (theme: string) => void) => {
       handler: (args, addLog) => {
         const query = args.join(" ").toLowerCase();
         if (query.includes("select") && query.includes("skills")) {
-          addLog({ type: "output", content: "┌────────────────┬───────┬────────────────────┐" });
-          addLog({ type: "output", content: "│ SKILL          │ LEVEL │ TECHNOLOGIES       │" });
-          addLog({ type: "output", content: "├────────────────┼───────┼────────────────────┤" });
-          skills.forEach((s) => {
-            const bar = "█".repeat(Math.floor(s.level / 10)) + "░".repeat(10 - Math.floor(s.level / 10));
-            addLog({ type: "output", content: `│ ${s.skill.padEnd(14)} │ ${bar} │ ${s.tech.padEnd(18)} │` });
+          addLog({
+            type: "output",
+            content: "┌────────────────┬───────┬────────────────────┐",
           });
-          addLog({ type: "output", content: "└────────────────┴───────┴────────────────────┘" });
+          addLog({
+            type: "output",
+            content: "│ SKILL          │ LEVEL │ TECHNOLOGIES       │",
+          });
+          addLog({
+            type: "output",
+            content: "├────────────────┼───────┼────────────────────┤",
+          });
+          skills.forEach((s) => {
+            const bar =
+              "█".repeat(Math.floor(s.level / 10)) +
+              "░".repeat(10 - Math.floor(s.level / 10));
+            addLog({
+              type: "output",
+              content: `│ ${s.skill.padEnd(14)} │ ${bar} │ ${s.tech.padEnd(18)} │`,
+            });
+          });
+          addLog({
+            type: "output",
+            content: "└────────────────┴───────┴────────────────────┘",
+          });
           addLog({ type: "sys", content: `${skills.length} rows returned` });
         } else {
-          addLog({ type: "err", content: 'Syntax error. Try: sql "SELECT * FROM skills"' });
+          addLog({
+            type: "err",
+            content: 'Syntax error. Try: sql "SELECT * FROM skills"',
+          });
         }
       },
     },
@@ -266,12 +366,27 @@ export const useTerminal = (onThemeChange?: (theme: string) => void) => {
       handler: (args, addLog) => {
         const mode = args[0]?.toLowerCase();
         if (["dark", "light", "minimal"].includes(mode)) {
-          addLog({ type: "sys", content: `> Applying theme: ${mode.toUpperCase()}...` });
+          addLog({
+            type: "sys",
+            content: `> Applying theme: ${mode.toUpperCase()}...`,
+          });
           setTimeout(() => {
             localStorage.setItem("user-theme", mode);
+            document.documentElement.setAttribute("data-theme", mode);
+            if (mode === "dark") {
+              document.documentElement.classList.add("dark");
+            } else {
+              document.documentElement.classList.remove("dark");
+            }
             onThemeChange?.(mode);
-            addLog({ type: "sys", content: `> Theme switched to ${mode.toUpperCase()}` });
-            addLog({ type: "sys", content: `> Preference saved to localStorage` });
+            addLog({
+              type: "sys",
+              content: `> Theme switched to ${mode.toUpperCase()}`,
+            });
+            addLog({
+              type: "sys",
+              content: `> Preference saved to localStorage`,
+            });
           }, 300);
         } else {
           addLog({ type: "err", content: "Usage: theme <dark|light|minimal>" });
@@ -300,7 +415,10 @@ export const useTerminal = (onThemeChange?: (theme: string) => void) => {
     sudo: {
       description: "Superuser command",
       handler: (_, addLog) => {
-        addLog({ type: "err", content: "⚠ Permission denied: Nice try, but you are not root here." });
+        addLog({
+          type: "err",
+          content: "⚠ Permission denied: Nice try, but you are not root here.",
+        });
         addLog({ type: "sys", content: "> This incident will be reported." });
       },
     },
@@ -329,7 +447,10 @@ export const useTerminal = (onThemeChange?: (theme: string) => void) => {
         handler.handler(args, addLog);
       } else {
         addLog({ type: "err", content: `Command not found: ${cmd}` });
-        addLog({ type: "sys", content: '> Type "help" for available commands' });
+        addLog({
+          type: "sys",
+          content: '> Type "help" for available commands',
+        });
       }
 
       setInputValue("");
@@ -345,7 +466,10 @@ export const useTerminal = (onThemeChange?: (theme: string) => void) => {
         e.preventDefault();
         const history = commandHistory.current;
         if (history.length > 0) {
-          const newIndex = historyIndex === -1 ? history.length - 1 : Math.max(0, historyIndex - 1);
+          const newIndex =
+            historyIndex === -1
+              ? history.length - 1
+              : Math.max(0, historyIndex - 1);
           setHistoryIndex(newIndex);
           setInputValue(history[newIndex]);
         }

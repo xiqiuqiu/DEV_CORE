@@ -1,0 +1,32 @@
+[
+  {
+    "title": "什么是乐观更新（Optimistic UI）",
+    "author": "MR.Z",
+    "date": "2026-01-19T00:00:00.000Z",
+    "tags": [
+      "React",
+      "前端性能",
+      "乐观更新",
+      "用户体验",
+      "LocalStorage"
+    ],
+    "summary": "拒绝转圈等待！深入探讨前端乐观更新（Optimistic UI）技术，通过\"先斩后奏\"的策略实现极致响应。本文详解三步工作流与React实现，并诚实分析了跨设备同步等\"坑点\"。",
+    "slug": "what-is-optimistic-ui",
+    "fileName": "什么是乐观更新（Optimistic UI）.md"
+  },
+  {
+    "title": "Claude Skills 的 5 个“反常识”设计",
+    "author": "MR.Z",
+    "date": "2026-01-19T00:00:00.000Z",
+    "tags": [
+      "Claude",
+      "AI",
+      "Skills",
+      "Anthropic",
+      "提示工程"
+    ],
+    "summary": "Claude Skills 并不像传统的函数调用。它更像是一套精密的提示词模板，没有任何代码层面的路由算法，全靠大模型\"硬扛\"。本文解析它五个反直觉的设计细节。",
+    "slug": "claude-skills-highlights",
+    "fileName": "揭秘 Claude Skills：你不知道的 5 个“反常识”亮点.md"
+  }
+]

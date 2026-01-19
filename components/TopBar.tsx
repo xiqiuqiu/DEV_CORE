@@ -1,19 +1,20 @@
 "use client";
 
-import { useI18n } from '@/lib/i18n/context';
-import LanguageSwitcher from './LanguageSwitcher';
-import { NavLink } from './NavLink';
+import { useI18n } from "@/lib/i18n/context";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { NavLink } from "./NavLink";
 
 const TopBar = () => {
   const { t } = useI18n();
 
   const navItems = [
-    { label: t.nav.index, href: '#hero' },
-    { label: t.nav.projects, href: '#projects' },
-    { label: t.nav.skills, href: '#skills' },
-    { label: t.nav.about, href: '#about' },
-    { label: t.nav.contact, href: '#contact' },
-    { label: t.nav.deploy, href: '/deploy' },
+    { label: t.nav.index, href: "#hero" },
+    { label: t.nav.projects, href: "#projects" },
+    { label: t.nav.skills, href: "#skills" },
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.contact, href: "#contact" },
+    { label: t.nav.blog, href: "/blog" },
+    { label: t.nav.deploy, href: "/deploy" },
   ];
 
   return (
@@ -45,7 +46,9 @@ const TopBar = () => {
         <LanguageSwitcher />
         <div className="flex items-center gap-2 px-3 py-1 border border-primary/50 bg-primary/10">
           <div className="w-2 h-2 rounded-full bg-primary" />
-          <span className="text-xs font-mono text-primary uppercase">{t.status.available}</span>
+          <span className="text-xs font-mono text-primary uppercase">
+            {t.status.available}
+          </span>
         </div>
       </div>
     </header>

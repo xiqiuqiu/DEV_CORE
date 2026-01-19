@@ -1,9 +1,15 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
+import typography from "@tailwindcss/typography";
 
 export default {
   darkMode: ["class"],
-  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./app/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./lib/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -15,8 +21,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Space Grotesk', 'sans-serif'],
-        mono: ['Space Mono', 'monospace'],
+        sans: ["Space Grotesk", "sans-serif"],
+        mono: ["Space Mono", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -83,11 +89,11 @@ export default {
           from: { transform: "translateY(0)" },
           to: { transform: "translateY(-50%)" },
         },
-        "flicker": {
+        flicker: {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.8" },
         },
-        "scan": {
+        scan: {
           "0%": { top: "0%" },
           "100%": { top: "100%" },
         },
@@ -99,7 +105,7 @@ export default {
           "0%, 100%": { opacity: "0" },
           "50%": { opacity: "0.15" },
         },
-        "blink": {
+        blink: {
           "0%, 50%": { opacity: "1" },
           "51%, 100%": { opacity: "0" },
         },
@@ -108,14 +114,15 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "terminal-scroll": "terminal-scroll 20s linear infinite",
-        "flicker": "flicker 0.15s ease-in-out infinite",
-        "scan": "scan 8s linear infinite",
+        flicker: "flicker 0.15s ease-in-out infinite",
+        scan: "scan 8s linear infinite",
         "scanline-sweep": "scanline-sweep 0.8s ease-in-out forwards",
-        "scanline-sweep-delayed": "scanline-sweep 0.8s ease-in-out 0.1s forwards",
+        "scanline-sweep-delayed":
+          "scanline-sweep 0.8s ease-in-out 0.1s forwards",
         "flash-pulse": "flash-pulse 0.8s ease-in-out",
-        "blink": "blink 1s step-end infinite",
+        blink: "blink 1s step-end infinite",
       },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [tailwindcssAnimate, typography],
 } satisfies Config;
