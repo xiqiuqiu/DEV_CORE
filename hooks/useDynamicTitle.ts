@@ -5,6 +5,11 @@ const useDynamicTitle = (defaultTitle: string = "SIGCLR - 澄讯空间  产品�
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    // Capture the actual document title on mount
+    if (typeof document !== "undefined") {
+      originalTitle.current = document.title;
+    }
+
     const awayMessages = ["🔌 等待重连..."];
     let messageIndex = 0;
 
@@ -35,6 +40,10 @@ const useDynamicTitle = (defaultTitle: string = "SIGCLR - 澄讯空间  产品�
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
+      }
+      // Restore the title when the component unmounts
+      if (typeof document !== "undefined") {
+        document.title = originalTitle.current;
       }
     };
   }, []);
