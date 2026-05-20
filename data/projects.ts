@@ -1,4 +1,4 @@
-import type { Locale } from '@/lib/i18n/translations';
+import type { Locale } from "@/lib/i18n/translations";
 
 interface LocalizedText {
   en: string;
@@ -11,8 +11,8 @@ export interface Project {
   description: LocalizedText;
   url: string;
   tags: LocalizedText[];
-  thumbnail?: string;           // Optional: project preview image
-  highlight?: LocalizedText;    // Optional: key value/result
+  thumbnail?: string; // Optional: project preview image
+  highlight?: LocalizedText; // Optional: key value/result
 }
 
 export const projects: Project[] = [
@@ -27,8 +27,8 @@ export const projects: Project[] = [
       zh: '专门为专业翻译人员设计的术语高速检索工具。通过"蜂巢"架构提供海量术语库的秒级查询，帮助译者在翻译过程中快速获取精准的行业词汇。',
     },
     highlight: {
-      en: 'Millisecond-level retrieval for 10M+ terminology entries',
-      zh: '支持千万级术语条目的毫秒级检索',
+      en: "Millisecond-level retrieval for 10M+ terminology entries",
+      zh: "支持千万级术语条目的毫秒级检索",
     },
     url: "https://frontend.toc.yitransolution.com",
     tags: [
@@ -49,8 +49,8 @@ export const projects: Project[] = [
       zh: "易解（YiTran）的综合翻译解决方案平台。提供翻译项目管理（TMS）、在线协作翻译环境以及术语库管理，旨在简化翻译工作流并提高团队协作效率。",
     },
     highlight: {
-      en: 'Reduced translation turnaround time by 40%',
-      zh: '翻译周期缩短 40%',
+      en: "Reduced translation turnaround time by 40%",
+      zh: "翻译周期缩短 40%",
     },
     url: "https://frontend.yitransolution.com",
     tags: [
@@ -85,19 +85,20 @@ export const projects: Project[] = [
   {
     id: 4,
     title: {
-      en: "Zen - Digital Wooden Fish",
-      zh: "禅意 - 电子木鱼",
+      en: "OmniMind",
+      zh: "通元心智",
     },
     description: {
-      en: "An exquisite digital wooden fish app (prototype from National Center for Traditional Arts).",
-      zh: "实现一款精致的电子木鱼（木鱼原型来自国立传统艺术中心）",
+      en: "OmniMind is a visual idea expansion and inspiration tool powered by LLM (Large Language Models).",
+      zh: "OmniMind 是一款由大语言模型（LLM）驱动的视觉化创意扩展与灵感工具",
     },
-    url: "https://zen-wooden-fish-796478408945.us-west1.run.app/",
+    url: "https://omnimind.sigclr.com/",
     tags: [
-      { en: "Wooden Fish", zh: "木鱼" },
-      { en: "Relaxation", zh: "舒缓" },
-      { en: "Classical", zh: "古典意向" },
-      { en: "Zen Wisdom", zh: "禅语妙言" },
+      { en: "Visual Mind Mapping", zh: "思维导图" },
+      { en: "AI-Powered Expansion", zh: "AI驱动话题衍生" },
+      { en: "Local-First Architecture", zh: "本地优先" },
+      { en: "Cloud Sync (Optional)", zh: "支持云端同步" },
+      { en: "Modern UI/UX", zh: "现代 UI/UX" },
     ],
   },
   {
@@ -110,7 +111,7 @@ export const projects: Project[] = [
       en: "A video streaming platform providing online video watching, channel management, and streaming services.",
       zh: "一个视频播放平台。主要功能是提供视频内容的在线观看、频道分类管理及流媒体播放服务。",
     },
-    url: "https://katelyatv-b3u.pages.dev",
+    url: "https://movie.sigclr.com",
     tags: [
       { en: "Streaming", zh: "视频流媒体" },
       { en: "VOD", zh: "在线点播" },
