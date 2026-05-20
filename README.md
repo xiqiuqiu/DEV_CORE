@@ -21,7 +21,7 @@
 - 🎨 **主题切换系统**: 支持多主题动态切换，含扫描线过渡动画
 - 📸 **Photo Mode**: 一键截图模式，隐藏UI元素生成作品集截图
 - 🌐 **国际化支持**: 内置中英文双语支持，动态切换语言
-- 🔍 **SEO 友好**: 利用 Next.js Metadata API 进行全站 SEO 优化
+- 🔍 **SEO 优化**: 完善的元数据、结构化数据 (JSON-LD)、站点地图、标准链接、Open Graph / Twitter Card，Lighthouse SEO 评分 100
 - 📱 **响应式设计**: 完美适配从桌面端到移动端的所有屏幕
 - 🎭 **页面过渡动画**: 平滑的页面切换和元素淡入效果
 - ⚡ **性能优化**: Turbopack 开发模式加速，优化构建性能
@@ -88,6 +88,40 @@ npm run upload
 
 目前项目为纯前端应用，无需额外环境变量。如需添加 API 密钥等敏感信息，请在 Cloudflare Pages 设置中配置。
 
+## 🔍 SEO 架构
+
+项目实现了完整的 SEO 优化体系，Lighthouse SEO 评分 100。
+
+### 站点地图 (Sitemap)
+
+`sitemap.ts` 自动生成包含首页、博客列表和所有文章页的站点地图，日期使用真实内容更新时间。构建后在 `https://sigclr.com/sitemap.xml` 可访问。
+
+### 结构化数据 (JSON-LD)
+
+| 页面 | Schema 类型 | 位置 |
+|------|------------|------|
+| 全站 | `Person` + `WebSite` | `app/layout.tsx` |
+| 博客列表 | `CollectionPage` + `BlogPosting` + `BreadcrumbList` | `app/blog/page.tsx` |
+| 文章页 | `Article` + `BreadcrumbList` | `app/blog/[slug]/page.tsx` |
+
+### 元数据策略
+
+- **首页**: 自定义 title/description，聚焦"产品型开发者与 AI 工具开发"定位
+- **博客列表**: 标题 `技术博客 | SIGCLR`，描述覆盖内容主题方向
+- **文章页**: 动态生成独立 title、description、Open Graph (type=article)、Twitter Card、标准链接 (canonical URL)
+- **工具页** (`/deploy`、`/p/[id]`): 设置 `robots: noindex, nofollow` 排除收录
+
+### 语言与社交
+
+- 页面语言标记 `zh-CN`，Open Graph locale `zh_CN`
+- Open Graph 图像使用 `public/OG.png`，文章继承站点 OG 图像
+- Twitter Card 使用 `summary_large_image` 大图模式
+
+### 标题层级
+
+- 首页仅保留一个 `<h1>`（ParallaxHero 装饰性文字使用 `<div>`）
+- 文章页正文首行 `# 标题` 自动移除，页面 header 的 `<h1>` 作为唯一主标题
+
 ## 🎯 自定义配置
 
 ### 修改项目内容
@@ -148,11 +182,21 @@ npx shadcx@latest add [component-name]
 
 ```
 ├── app/                    # Next.js 路由与页面
-│   ├── api/               # API 路由
-│   ├── layout.tsx         # 全局布局
+│   ├── api/               # API 路由 (deploy, html, visit)
+│   ├── blog/              # 博客系统
+│   │   ├── page.tsx       # 博客列表 (含标签筛选)
+│   │   └── [slug]/        # 文章详情 (SSG)
+│   │       └── page.tsx   # Markdown 渲染 + SEO 元数据
+│   ├── deploy/            # HTML 部署工具
+│   │   ├── page.tsx       # 部署页面
+│   │   └── layout.tsx     # noindex 配置
+│   ├── p/[id]/            # 已部署页面预览
+│   │   ├── page.tsx       # 预览页面
+│   │   └── layout.tsx     # noindex 配置
+│   ├── layout.tsx         # 全局布局 (元数据、JSON-LD、GA、字体)
 │   ├── page.tsx           # 首页
 │   ├── globals.css        # 全局样式
-│   ├── sitemap.ts         # 站点地图
+│   ├── sitemap.ts         # 站点地图 (自动生成)
 │   └── not-found.tsx      # 404 页面
 ├── components/            # React 组件
 │   ├── ui/               # shadcn/ui 基础组件
@@ -177,8 +221,13 @@ npx shadcx@latest add [component-name]
 │   ├── utils.ts          # 通用工具函数
 │   └── i18n/             # 国际化配置
 ├── data/                  # 静态数据
-│   └── projects.ts       # 项目数据（支持国际化）
+│   ├── projects.ts       # 项目数据（支持国际化）
+│   └── blog-posts.json   # 博客索引（构建前由脚本生成）
+├── scripts/               # 构建辅助脚本
+│   └── generate-blog-data.js  # 从 Markdown 生成博客 JSON 索引
 ├── public/               # 静态资源
+│   ├── OG.png            # Open Graph 社交分享图
+│   └── robots.txt        # 爬虫抓取规则
 ├── components.json       # shadcn/ui 配置
 ├── tailwind.config.ts    # Tailwind CSS 配置
 ├── next.config.ts        # Next.js 配置
