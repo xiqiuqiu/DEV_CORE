@@ -14,8 +14,11 @@ interface BlogPost {
 }
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "技术博客文章列表",
+  title: "技术博客",
+  description: "技术思考与开发实践记录 — React 性能、AI 工具、产品开发、Cloudflare/部署实践",
+  alternates: {
+    canonical: "https://sigclr.com/blog",
+  },
 };
 
 // 提取所有唯一标签
@@ -54,6 +57,34 @@ async function BlogListContent({
       month: "long",
       day: "numeric",
     });
+  };
+
+  const blogJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "技术博客 | SIGCLR 澄讯空间",
+    description: "技术思考与开发实践记录",
+    url: "https://sigclr.com/blog",
+    mainEntity: filteredPosts.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: post.summary,
+      url: `https://sigclr.com/blog/${post.slug}`,
+      datePublished: post.date,
+      author: {
+        "@type": "Person",
+        name: post.author,
+      },
+    })),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "首页", item: "https://sigclr.com" },
+      { "@type": "ListItem", position: 2, name: "博客" },
+    ],
   };
 
   return (
@@ -144,6 +175,19 @@ async function BlogListContent({
           )}
         </div>
       </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(blogJsonLd),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd),
+        }}
+      />
     </div>
   );
 }

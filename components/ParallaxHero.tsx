@@ -39,8 +39,8 @@ const ParallaxHero = () => {
       <div className="relative z-10 text-center px-8">
         {/* Title Container to ensure alignment */}
         <ScrollReveal animation="scale" duration={0.8} delay={0.2} className="relative inline-block">
-          {/* Shadow layer */}
-          <h1
+          {/* Shadow layer (decorative only) */}
+          <div
             className="text-[8vw] md:text-[12vw] font-bold leading-none text-primary/20 absolute inset-0 select-none font-ocera"
             style={{
               transform: `translate(${mousePos.x}px, ${mousePos.y}px)`,
@@ -48,7 +48,7 @@ const ParallaxHero = () => {
             }}
           >
             SIGCLR
-          </h1>
+          </div>
 
           {/* Main title with Glitch Effect */}
           <h1

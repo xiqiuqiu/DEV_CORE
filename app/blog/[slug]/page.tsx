@@ -36,9 +36,30 @@ export async function generateMetadata({
     return { title: "文章未找到" };
   }
 
+  const url = `https://sigclr.com/blog/${post.slug}`;
+
   return {
     title: post.title,
     description: post.summary,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.summary,
+      type: "article",
+      url,
+      siteName: "SIGCLR",
+      locale: "zh_CN",
+      authors: [post.author],
+      publishedTime: post.date,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.summary,
+      creator: "@logic_zy",
+    },
   };
 }
 
@@ -48,13 +69,15 @@ export default async function BlogDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug: rawSlug } = await params;
-  // 解码URL编码的slug
   const slug = decodeURIComponent(rawSlug);
   const post = (blogPosts as BlogPost[]).find((p) => p.slug === slug);
 
   if (!post) {
     notFound();
   }
+
+  // Remove the first H1 heading from markdown — the page header already provides it
+  const contentWithoutLeadingH1 = post.content.replace(/^\s*#\s+.+?\r?\n/, "");
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
@@ -65,8 +88,48 @@ export default async function BlogDetailPage({
     });
   };
 
+  const articleUrl = `https://sigclr.com/blog/${post.slug}`;
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.summary,
+    author: {
+      "@type": "Person",
+      name: post.author,
+    },
+    datePublished: post.date,
+    dateModified: post.date,
+    url: articleUrl,
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "首页",
+        item: "https://sigclr.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "博客",
+        item: "https://sigclr.com/blog",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+      },
+    ],
+  };
+
   return (
-    <div className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background">
       <article className="max-w-3xl mx-auto px-8 py-24">
         {/* Back link */}
         <div className="flex items-center gap-4 mb-8">
@@ -106,8 +169,8 @@ export default async function BlogDetailPage({
         </header>
 
         {/* Content */}
-        <div className="prose dark:prose-invert prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded [&_pre_code]:bg-transparent [&_pre_code]:text-inherit prose-pre:bg-secondary prose-pre:text-secondary-foreground prose-pre:border prose-pre:border-border">
-          <ReactMarkdown>{post.content}</ReactMarkdown>
+        <div className="prose article-prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded [&_pre_code]:bg-transparent [&_pre_code]:text-inherit prose-pre:bg-secondary prose-pre:text-secondary-foreground prose-pre:border prose-pre:border-border">
+          <ReactMarkdown>{contentWithoutLeadingH1}</ReactMarkdown>
         </div>
 
         {/* Footer */}
@@ -120,6 +183,19 @@ export default async function BlogDetailPage({
           </Link>
         </footer>
       </article>
-    </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleJsonLd),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd),
+        }}
+      />
+    </main>
   );
 }

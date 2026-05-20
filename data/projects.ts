@@ -31,6 +31,7 @@ export const projects: Project[] = [
       zh: "支持千万级术语条目的毫秒级检索",
     },
     url: "https://frontend.toc.yitransolution.com",
+    thumbnail: "/project-covers/honeycomb-term-search.webp",
     tags: [
       { en: "AI", zh: "AI" },
       { en: "Term Search", zh: "术语检索" },
@@ -53,6 +54,7 @@ export const projects: Project[] = [
       zh: "翻译周期缩短 40%",
     },
     url: "https://frontend.yitransolution.com",
+    thumbnail: "/project-covers/yitransolution.webp",
     tags: [
       { en: "AI", zh: "AI" },
       { en: "TMS", zh: "翻译管理" },
@@ -75,6 +77,7 @@ export const projects: Project[] = [
       zh: "币种交易 / 高性能前端", // 推测的亮点
     },
     url: "https://frontend.futures.trding.xyz/#/",
+    thumbnail: "/project-covers/bicon-trading.webp",
     tags: [
       { en: "Coin", zh: "币种" },
       { en: "Trading", zh: "交易" },
@@ -93,6 +96,7 @@ export const projects: Project[] = [
       zh: "OmniMind 是一款由大语言模型（LLM）驱动的视觉化创意扩展与灵感工具",
     },
     url: "https://omnimind.sigclr.com/",
+    thumbnail: "/project-covers/omnimind.webp",
     tags: [
       { en: "Visual Mind Mapping", zh: "思维导图" },
       { en: "AI-Powered Expansion", zh: "AI驱动话题衍生" },
@@ -112,6 +116,7 @@ export const projects: Project[] = [
       zh: "一个视频播放平台。主要功能是提供视频内容的在线观看、频道分类管理及流媒体播放服务。",
     },
     url: "https://movie.sigclr.com",
+    thumbnail: "/project-covers/katelyatv.webp",
     tags: [
       { en: "Streaming", zh: "视频流媒体" },
       { en: "VOD", zh: "在线点播" },
@@ -130,6 +135,7 @@ export const projects: Project[] = [
       zh: "基于人工智能的法律辅助工具。利用大语言模型（LLM）协助法律专业人士进行法律文献检索、合同/文档自动分析及法律咨询建议，提高法律工作的自动化水平。",
     },
     url: "https://legal-ai-tools-tau.vercel.app",
+    thumbnail: "/project-covers/legaleagle-ai.webp",
     tags: [
       { en: "AI", zh: "AI" },
       { en: "Legal Assistant", zh: "法律助理" },
@@ -148,6 +154,7 @@ export const projects: Project[] = [
       zh: "一个简单易用的Excel文件关键词搜索工具，支持批量搜索多个Excel文件中的关键词，并提供直观的GUI界面。",
     },
     url: "https://github.com/xiqiuqiu/easy_file_search",
+    thumbnail: "/project-covers/excel-keyword-search.webp",
     tags: [
       { en: "Batch Search", zh: "批量搜索" },
       { en: "Multi-sheet", zh: "跨工作表支持" },

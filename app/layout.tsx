@@ -35,30 +35,32 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://sigclr.com'),
   title: {
     template: '%s | SIGCLR',
-    default:
-      'SIGCLR - 澄讯空间  产品设计前端开发 | Vue, TypeScript, React, Node.js',
+    default: 'SIGCLR 澄讯空间 | 产品型开发者与 AI 工具开发',
   },
   description:
-    'SIGCLR - 澄讯空间  产品设计前端开发 | Vue, TypeScript, React, Node.js | Signal Over Noise: Systems, Architecture, Tools, & Thoughtful Code.',
+    'SIGCLR 澄讯空间 — 产品型开发者的个人网站。专注 AI 工具开发、前端产品体验与全栈交付，分享技术思考与开发实践。',
   keywords: [
-    'software engineer',
-    'full-stack developer',
-    'portfolio',
-    'web development',
+    '产品型开发者',
+    'AI 工具开发',
+    '前端开发',
+    '全栈开发',
     'TypeScript',
-    'Vue',
     'React',
+    'Vue',
     'Node.js',
   ],
   authors: [{ name: 'Qiu' }],
   creator: 'Qiu',
+  alternates: {
+    canonical: 'https://sigclr.com',
+  },
   openGraph: {
-    title: 'SIGCLR – 澄讯空间',
+    title: 'SIGCLR 澄讯空间 | 产品型开发者与 AI 工具开发',
     description:
-      'SIGCLR - 澄讯空间  产品设计前端开发 | Vue, TypeScript, React, Node.js | Signal Over Noise: Systems, Architecture, Tools, & Thoughtful Code.',
+      'SIGCLR 澄讯空间 — 产品型开发者的个人网站。专注 AI 工具开发、前端产品体验与全栈交付。',
     type: 'website',
     siteName: 'SIGCLR',
-    locale: 'en_US',
+    locale: 'zh_CN',
     images: [
       {
         url: ogImage.src,
@@ -70,9 +72,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SIGCLR – 澄讯空间',
+    title: 'SIGCLR 澄讯空间 | 产品型开发者与 AI 工具开发',
     description:
-      'SIGCLR - 澄讯空间  产品设计前端开发 | Vue, TypeScript, React, Node.js | Signal Over Noise: Systems, Architecture, Tools, & Thoughtful Code.',
+      'SIGCLR 澄讯空间 — 产品型开发者的个人网站。专注 AI 工具开发、前端产品体验与全栈交付。',
     creator: '@logic_zy',
   },
   robots: {
@@ -81,14 +83,24 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
+const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'SIGCLR',
-  jobTitle: 'Senior Software Engineer',
+  name: 'Qiu',
+  alternateName: 'SIGCLR',
+  jobTitle: '产品型开发者 / Builder',
   url: 'https://sigclr.com',
   sameAs: ['https://github.com/xiqiuqiu', 'https://twitter.com/logic_zy'],
-  knowsAbout: ['Development', 'Vue.js', 'TypeScript', 'React', 'Node.js'],
+  knowsAbout: ['AI 工具开发', '前端产品体验', '全栈交付', 'TypeScript', 'React', 'Vue.js', 'Node.js'],
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'SIGCLR 澄讯空间',
+  url: 'https://sigclr.com',
+  description: '产品型开发者的个人网站，专注 AI 工具开发、前端产品体验与全栈交付。',
+  inLanguage: 'zh-CN',
 };
 
 export default function RootLayout({
@@ -99,7 +111,7 @@ export default function RootLayout({
   const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
   return (
     <html
-      lang='en'
+      lang='zh-CN'
       className={cn(spaceGrotesk.variable, spaceMono.variable, ocera.variable)}
       suppressHydrationWarning
     >
@@ -148,7 +160,13 @@ gtag('config', '${GA_ID}');
           <script
             type='application/ld+json'
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify(jsonLd),
+              __html: JSON.stringify(personJsonLd),
+            }}
+          />
+          <script
+            type='application/ld+json'
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(websiteJsonLd),
             }}
           />
         </div>
