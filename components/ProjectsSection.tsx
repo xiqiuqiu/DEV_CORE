@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { getLocalizedProjects } from '@/data/projects';
 import { useI18n } from '@/lib/i18n/context';
@@ -9,10 +10,6 @@ const ProjectsSection = () => {
   const { t, locale } = useI18n();
   const projects = getLocalizedProjects(locale);
 
-  const handleProjectClick = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
-
   return (
     <section id="projects" className="py-24 px-8">
       <div className="max-w-4xl mx-auto">
@@ -20,9 +17,12 @@ const ProjectsSection = () => {
         <ScrollReveal animation="fade-right" className="flex items-center gap-4 mb-12">
           <h2 className="text-3xl md:text-4xl font-bold">{t.projects.title}</h2>
           <div className="flex-1 h-px bg-border" />
-          <span className="text-xs text-muted-foreground font-mono">
-            [{projects.length.toString().padStart(2, '0')} {t.projects.entries}]
-          </span>
+          <Link
+            href="/projects"
+            className="text-xs text-muted-foreground font-mono hover:text-primary transition-colors"
+          >
+            [{t.projects.viewAll} →]
+          </Link>
         </ScrollReveal>
 
         {/* Projects grid */}
@@ -34,9 +34,9 @@ const ProjectsSection = () => {
               delay={index * 0.1} // Stagger effect
               className="h-full"
             >
-              <article
+              <Link
+                href={`/projects/${project.slug}`}
                data-photo-target
-                onClick={() => handleProjectClick(project.url)}
                 className="group h-full border-2 border-border p-6 hover:border-primary transition-all duration-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0_hsl(var(--primary))] cursor-pointer overflow-hidden flex flex-col"
               >
                 {/* Project thumbnail placeholder */}
@@ -87,10 +87,11 @@ const ProjectsSection = () => {
                     </span>
                   ))}
                 </div>
-              </article>
+              </Link>
             </ScrollReveal>
           ))}
         </div>
+
       </div>
     </section>
   );

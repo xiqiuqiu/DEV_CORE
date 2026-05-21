@@ -15,7 +15,7 @@ interface I18nContextType {
 const I18nContext = createContext<I18nContextType | null>(null);
 
 function getInitialLocale(): Locale {
-  if (typeof window === 'undefined') return 'en';
+  if (typeof window === 'undefined') return 'zh';
   
   // Check localStorage first
   const stored = localStorage.getItem(STORAGE_KEY);
@@ -33,7 +33,7 @@ function getInitialLocale(): Locale {
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>('en');
+  const [locale, setLocaleState] = useState<Locale>('zh');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

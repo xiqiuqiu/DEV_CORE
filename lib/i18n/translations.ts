@@ -26,6 +26,26 @@ export const translations = {
     projects: {
       title: "PROJECTS",
       entries: "ENTRIES",
+      eyebrow: "SELECTED WORK",
+      pageTitle: "Project Index",
+      pageIntro:
+        "A collection of shipped products, prototypes, and practical tools across AI, frontend experience, and full-stack delivery.",
+      viewAll: "VIEW ALL",
+      viewCase: "View case study",
+      visitProject: "Visit project",
+      backHome: "Back home",
+      backProjects: "Back to projects",
+      overview: "Overview",
+      challenge: "Challenge",
+      solution: "Solution",
+      impact: "Impact",
+      role: "Role",
+      status: "Status",
+      year: "Year",
+      stack: "Stack",
+      features: "Key Features",
+      nextProject: "Next project",
+      caseStudy: "Case Study",
     },
     // SkillsSection
     skills: {
@@ -119,6 +139,26 @@ export const translations = {
     projects: {
       title: "项目",
       entries: "个项目",
+      eyebrow: "精选作品",
+      pageTitle: "项目索引",
+      pageIntro:
+        "这里整理了已经上线的产品、原型和实用工具，覆盖 AI 工具、前端体验和全栈交付。",
+      viewAll: "查看全部",
+      viewCase: "查看案例",
+      visitProject: "访问项目",
+      backHome: "返回首页",
+      backProjects: "返回项目列表",
+      overview: "项目概览",
+      challenge: "问题背景",
+      solution: "解决方案",
+      impact: "结果与价值",
+      role: "负责内容",
+      status: "状态",
+      year: "年份",
+      stack: "技术方向",
+      features: "关键功能",
+      nextProject: "下一个项目",
+      caseStudy: "案例详情",
     },
     // SkillsSection
     skills: {
